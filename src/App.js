@@ -256,12 +256,12 @@ function App() {
                   className="w-full p-3 border border-gray-300 rounded-lg bg-white"
                 >
                   <option value="">What's your biggest care minutes frustration?</option>
-                  <option value="constant-worry-compliance">I constantly worry we might be non-compliant without knowing</option>
+                  <option value="constant-worry-compliance">Want confidence in our compliance status</option>
                   <option value="last-minute-panic">We only find out we're behind at the end of each quarter</option>
                   <option value="manual-spreadsheet-hell">Spending hours manually calculating compliance in spreadsheets</option>
                   <option value="gpms-reporting-nightmare">Want to streamline GPMS quarterly reporting</option>
                   <option value="acqsc-audit-fear">Need help preparing for ACQSC audit requirements</option>
-                  <option value="penalty-risk-stress">Losing sleep over potential $31.92/bed/day penalties</option>
+                  <option value="penalty-risk-stress">Want to avoid compliance penalties</option>
                 </select>
                 <input
                   type="tel"
