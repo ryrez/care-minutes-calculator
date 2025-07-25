@@ -255,13 +255,13 @@ function App() {
                   onChange={(e) => setBiggestPainPoint(e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-lg bg-white"
                 >
-                  <option value="">What's your biggest care minutes frustration?</option>
+                  <option value="">What's your biggest care minutes challenge?</option>
                   <option value="constant-worry-compliance">Want confidence in our compliance status</option>
-                  <option value="last-minute-panic">We only find out we're behind at the end of each quarter</option>
-                  <option value="manual-spreadsheet-hell">Spending hours manually calculating compliance in spreadsheets</option>
-                  <option value="gpms-reporting-nightmare">Want to streamline GPMS quarterly reporting</option>
-                  <option value="acqsc-audit-fear">Need help preparing for ACQSC audit requirements</option>
-                  <option value="penalty-risk-stress">Want to avoid compliance penalties</option>
+                  <option value="last-minute-panic">Need better quarterly compliance forecasting</option>
+                  <option value="manual-spreadsheet-hell">Want to streamline our compliance tracking process</option>
+                  <option value="gpms-reporting-nightmare">Looking to simplify GPMS quarterly reporting</option>
+                  <option value="acqsc-audit-fear">Need help with ACQSC audit preparation</option>
+                  <option value="penalty-risk-stress">Want to minimize compliance penalty risk</option>
                 </select>
                 <input
                   type="tel"
@@ -283,8 +283,21 @@ function App() {
         </div>
       )}
 
-      <div className="mt-8 text-center text-sm text-gray-500">
-        <p>This calculator provides estimates based on current aged care compliance requirements.</p>
+      {/* Legal Disclaimers */}
+      <div className="mt-8 bg-gray-50 border border-gray-200 rounded-lg p-6">
+        <h3 className="text-lg font-bold text-gray-800 mb-4">⚠️ Important Disclaimers</h3>
+        <div className="text-sm text-gray-700 space-y-2">
+          <p><strong>This calculator is for estimation purposes only</strong> and does not constitute legal, financial, or compliance advice.</p>
+          <p>• Results are estimates based on publicly available penalty formulas</p>
+          <p>• Actual compliance determinations are made solely by ACQSC</p>
+          <p>• Regulations and penalty rates are subject to change</p>
+          <p>• Not responsible for compliance decisions based on this tool</p>
+          <p><strong>Professional advice recommended:</strong> Consult your compliance officer, legal advisor, or aged care consultant for official guidance on care minutes compliance.</p>
+        </div>
+      </div>
+
+      <div className="mt-6 text-center text-xs text-gray-400">
+        <p>Last updated: July 2025 | Based on current Australian aged care regulations</p>
       </div>
     </div>
   );
