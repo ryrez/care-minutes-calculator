@@ -12,8 +12,8 @@ function LandingPage({ onNavigateToCalculator }) {
     try {
       const submitData = new FormData();
       submitData.append('access_key', '312285e3-d3ad-4d63-af4e-b5069068cb30');
-      submitData.append('subject', 'CareMetrics - Early Access Request');
-      submitData.append('from_name', 'CareMetrics');
+      submitData.append('subject', 'ComplianceIQ - Early Access Request');
+      submitData.append('from_name', 'ComplianceIQ');
       submitData.append('email', email);
 
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -36,7 +36,7 @@ function LandingPage({ onNavigateToCalculator }) {
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto px-6 py-24 text-center">
         <h1 className="text-5xl font-light text-gray-900 mb-6">
-          Compliance tracking Solutions 
+          Compliance Tracking Solutions 
         </h1>
         <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
           Care minutes calculation tool for Australian aged care facilities. 
