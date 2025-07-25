@@ -251,7 +251,7 @@ function LandingPage({ onNavigateToCalculator }) {
                   Calculator
                 </button>
                 <a 
-                  href="https://agedcare.gov.au" 
+                  href="https://www.agedcarequality.gov.au/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-gray-700 transition-colors"
