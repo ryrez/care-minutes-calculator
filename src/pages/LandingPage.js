@@ -39,8 +39,8 @@ function LandingPage({ onNavigateToCalculator }) {
           Care minutes compliance tracking
         </h1>
         <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-          Simple compliance monitoring for Australian aged care facilities. 
-          Know your ACQSC compliance status clearly.
+        Care minutes calculation tool for Australian aged care facilities. 
+        Estimate compliance status for planning purposes.
         </p>
         
         <button
