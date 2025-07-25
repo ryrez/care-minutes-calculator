@@ -39,8 +39,8 @@ function LandingPage({ onNavigateToCalculator }) {
           Care minutes compliance tracking
         </h1>
         <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-        Care minutes calculation tool for Australian aged care facilities. 
-        Estimate compliance status for planning purposes.
+          Care minutes calculation tool for Australian aged care facilities. 
+          Estimate compliance status for internal planning purposes.
         </p>
         
         <button
@@ -140,61 +140,31 @@ function LandingPage({ onNavigateToCalculator }) {
         </div>
       </div>
 
-      {/* Early Access */}
-      <div className="py-16">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-light text-gray-900 mb-6">
-            Get early access
-          </h2>
-          <p className="text-lg text-gray-600 mb-8">
-            We're building a compliance tracking dashboard. Join the waitlist for early access.
-          </p>
-          
-          {!isSubmitted ? (
-            <div className="flex gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your.email@facility.com.au"
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                required
-              />
-              <button
-                onClick={handleSubmit}
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-              >
-                Join waitlist
-              </button>
-            </div>
-          ) : (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6 max-w-md mx-auto">
-              <p className="text-green-800">Thanks! We'll notify you when we launch.</p>
-            </div>
-          )}
-          
-          <p className="text-sm text-gray-500 mt-6">
-            Expected launch Q1 2026
-          </p>
-        </div>
-      </div>
-
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 py-12">
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
               <div className="flex items-center gap-3 mb-2">
-                {/* Simple Analytics + Compliance + Care Icon */}
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                {/* Caring + Analytical Logo */}
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center relative">
+                  {/* Heart shape (caring) */}
+                  <svg className="w-4 h-4 text-white absolute" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                   </svg>
+                  {/* Analytics bars overlay */}
+                  <div className="absolute inset-0 flex items-end justify-center pb-1 opacity-80">
+                    <div className="flex items-end gap-0.5">
+                      <div className="w-0.5 h-1 bg-white"></div>
+                      <div className="w-0.5 h-2 bg-white"></div>
+                      <div className="w-0.5 h-1.5 bg-white"></div>
+                    </div>
+                  </div>
                 </div>
                 <span className="text-lg font-medium text-gray-900">CareMetrics</span>
               </div>
               <p className="text-sm text-gray-600">
-                Compliance tracking for Australian aged care
+                Care minutes calculation for Australian aged care
               </p>
             </div>
             
@@ -228,6 +198,7 @@ function LandingPage({ onNavigateToCalculator }) {
                   ACQSC
                 </a>
               </div>
+              <p className="text-xs text-gray-400">For planning purposes only. Consult your compliance officer for official guidance.</p>
             </div>
           </div>
         </div>
