@@ -23,9 +23,9 @@ function App() {
             <div className="flex items-center">
               <button 
                 onClick={navigateToLanding}
-                className="text-xl font-bold text-gray-900 hover:text-green-600 transition-colors"
+                className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
               >
-                Care Compliance Pro
+                CareMetrics
               </button>
             </div>
             <div className="flex items-center space-x-4">
@@ -33,7 +33,7 @@ function App() {
                 onClick={navigateToLanding}
                 className={`px-3 py-2 text-sm font-medium transition-colors ${
                   currentPage === 'landing' 
-                    ? 'text-green-600 border-b-2 border-green-600' 
+                    ? 'text-blue-600 border-b-2 border-blue-600' 
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
@@ -43,7 +43,7 @@ function App() {
                 onClick={navigateToCalculator}
                 className={`px-3 py-2 text-sm font-medium transition-colors ${
                   currentPage === 'calculator' 
-                    ? 'text-green-600 border-b-2 border-green-600' 
+                    ? 'text-blue-600 border-b-2 border-blue-600' 
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
