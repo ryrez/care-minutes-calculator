@@ -40,7 +40,7 @@ function App() {
                 </div>
               </div>
               <span className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors">
-                CareMetrics
+                ComplianceIQ
               </span>
             </button>
             

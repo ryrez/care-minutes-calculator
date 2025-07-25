@@ -161,7 +161,7 @@ function LandingPage({ onNavigateToCalculator }) {
                     </div>
                   </div>
                 </div>
-                <span className="text-lg font-medium text-gray-900">CareMetrics</span>
+                <span className="text-lg font-medium text-gray-900">ComplianceIQ</span>
               </div>
               <p className="text-sm text-gray-600">
                 Care minutes calculation for Australian aged care
@@ -181,7 +181,7 @@ function LandingPage({ onNavigateToCalculator }) {
           
           <div className="border-t border-gray-200 mt-8 pt-8 text-center">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-              <p>© 2025 CareMetrics. Made in Melbourne, Australia.</p>
+              <p>© 2025 ComplianceIQ. Made in Melbourne, Australia.</p>
               <div className="flex gap-6">
                 <button 
                   onClick={onNavigateToCalculator}

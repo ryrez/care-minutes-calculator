@@ -66,8 +66,8 @@ function CalculatorComponent() {
       try {
         const formData = new FormData();
         formData.append('access_key', '312285e3-d3ad-4d63-af4e-b5069068cb30');
-        formData.append('subject', 'New Care Minutes Calculator Lead');
-        formData.append('from_name', 'Care Minutes Calculator');
+        formData.append('subject', 'New ComplianceIQ Calculator Lead');
+        formData.append('from_name', 'ComplianceIQ Calculator');
         formData.append('name', contactName);
         formData.append('email', email);
         formData.append('facility', facilityName);
