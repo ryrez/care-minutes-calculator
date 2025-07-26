@@ -33,178 +33,468 @@ function LandingPage({ onNavigateToCalculator }) {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <div className="max-w-4xl mx-auto px-6 py-24 text-center">
-        <h1 className="text-5xl font-light text-gray-900 mb-6">
-          Compliance Tracking Solutions 
-        </h1>
-        <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-          Care minutes calculation tool for Australian aged care facilities. 
-          Estimate compliance status for internal planning purposes.
-        </p>
-        
-        <button
-          onClick={onNavigateToCalculator}
-          className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors"
-        >
-          Check compliance status
-        </button>
-        <p className="text-sm text-gray-500 mt-4">Free calculator • No signup required</p>
-      </div>
-
-      {/* Status Indicators */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-light text-gray-900 text-center mb-12">
-            Clear compliance visibility
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg border border-gray-200 text-center">
-              <div className="w-4 h-4 bg-green-500 rounded-full mx-auto mb-4"></div>
-              <div className="text-2xl font-light text-gray-900 mb-2">103%</div>
-              <div className="text-sm text-gray-600">Compliant</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg border border-gray-200 text-center">
-              <div className="w-4 h-4 bg-yellow-500 rounded-full mx-auto mb-4"></div>
-              <div className="text-2xl font-light text-gray-900 mb-2">94%</div>
-              <div className="text-sm text-gray-600">At risk</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg border border-gray-200 text-center">
-              <div className="w-4 h-4 bg-red-500 rounded-full mx-auto mb-4"></div>
-              <div className="text-2xl font-light text-gray-900 mb-2">87%</div>
-              <div className="text-sm text-gray-600">Non-compliant</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Features */}
-      <div className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-light text-gray-900 text-center mb-12">
-            Built for facility managers
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                </svg>
-              </div>
-              <h3 className="font-medium text-gray-900 mb-2">Live dashboard</h3>
-              <p className="text-gray-600 text-sm">See your compliance percentage instantly with clear status indicators.</p>
+      {/* Hero Section - Full-bleed with animated dashboard */}
+      <div className="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-16 items-center">
+          {/* Hero Content */}
+          <div>
+            <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-8">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
+              Live Compliance Status. Real-time Care Minutes Tracking.
             </div>
             
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-              </div>
-              <h3 className="font-medium text-gray-900 mb-2">GPMS exports</h3>
-              <p className="text-gray-600 text-sm">Generate reports formatted for quarterly GPMS submissions.</p>
-            </div>
+            <h1 className="text-6xl font-light text-gray-900 mb-6 leading-tight">
+              Smarter Compliance.
+              <br />
+              <span className="text-blue-600 font-normal">Safer Care.</span>
+              <br />
+              <span className="text-gray-700">Simplified.</span>
+            </h1>
             
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              ComplianceIQ empowers aged care providers with intelligent tools for regulatory success, 
+              workforce planning, and GPMS-ready reporting.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
+              <button
+                onClick={onNavigateToCalculator}
+                className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-medium hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Try Free Calculator
+              </button>
+              <div className="flex items-center text-sm text-gray-500">
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                 </svg>
+                No signup required. Instant results.
               </div>
-              <h3 className="font-medium text-gray-900 mb-2">Early alerts</h3>
-              <p className="text-gray-600 text-sm">Get notified when compliance drops below your set thresholds.</p>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Key Numbers */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-light text-blue-600 mb-2">$31.92</div>
-              <div className="text-sm text-gray-600">ACQSC penalty per bed/day</div>
-            </div>
-            <div>
-              <div className="text-3xl font-light text-blue-600 mb-2">215</div>
-              <div className="text-sm text-gray-600">Required care minutes per day</div>
-            </div>
-            <div>
-              <div className="text-3xl font-light text-blue-600 mb-2">30 sec</div>
-              <div className="text-sm text-gray-600">To check compliance status</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-12">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0">
-              <div className="flex items-center gap-3 mb-2">
-                {/* Futuristic Logo - Circuit/Data Flow Design */}
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center relative overflow-hidden">
-                  {/* Circuit pattern background */}
-                  <div className="absolute inset-0 opacity-20">
-                    <svg className="w-full h-full" viewBox="0 0 32 32" fill="none">
-                      <path d="M8 8h4v4H8zM20 8h4v4h-4zM8 20h4v4H8zM20 20h4v4h-4z" fill="currentColor"/>
-                      <path d="M12 10h8M10 12v8M22 12v8M12 22h8" stroke="currentColor" strokeWidth="1"/>
-                    </svg>
-                  </div>
-                  {/* Central data icon */}
-                  <svg className="w-4 h-4 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                  </svg>
-                  {/* Pulse effect */}
-                  <div className="absolute inset-0 bg-blue-400 opacity-30 rounded-lg animate-pulse"></div>
+          
+          {/* Animated Dashboard Mockup */}
+          <div className="relative">
+            <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+              {/* Dashboard Header */}
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                 </div>
-                <span className="text-lg font-medium text-gray-900">ComplianceIQ</span>
+                <div className="text-xs text-gray-500 font-medium">Live Dashboard</div>
               </div>
-              <p className="text-sm text-gray-600">
-                Care minutes calculation for Australian aged care
+              
+              {/* Compliance Dial */}
+              <div className="text-center mb-8">
+                <div className="text-5xl font-light text-green-600 mb-2">103%</div>
+                <div className="text-sm text-gray-600 mb-6">Current Compliance Status</div>
+                
+                {/* Progress Ring */}
+                <div className="relative w-32 h-32 mx-auto mb-6">
+                  <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 36 36">
+                    <path
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="#e5e7eb"
+                      strokeWidth="3"
+                    />
+                    <path
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="#10b981"
+                      strokeWidth="3"
+                      strokeDasharray="100, 100"
+                      className="transition-all duration-1000 ease-out"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Status Cards */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="bg-green-50 p-4 rounded-xl text-center">
+                  <div className="text-sm font-medium text-green-800">Care Minutes</div>
+                  <div className="text-lg font-light text-green-600">221/day</div>
+                </div>
+                <div className="bg-blue-50 p-4 rounded-xl text-center">
+                  <div className="text-sm font-medium text-blue-800">GPMS Ready</div>
+                  <div className="text-lg font-light text-blue-600">Q1 2025</div>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-xl text-center">
+                  <div className="text-sm font-medium text-gray-800">Next Alert</div>
+                  <div className="text-lg font-light text-gray-600">None</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Floating elements */}
+            <div className="absolute -top-4 -right-4 w-16 h-16 bg-blue-400 rounded-full opacity-20 blur-xl animate-pulse"></div>
+            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-green-400 rounded-full opacity-20 blur-xl animate-pulse delay-1000"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Platform Highlights */}
+      <div className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-light text-gray-900 mb-6">
+              Platform Highlights
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Intelligent compliance tools designed specifically for Australian aged care providers
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-3 gap-12">
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Intelligent Tracking</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Real-time care minutes calculator that flags compliance risk instantly. 
+                Know your status before problems arise.
               </p>
             </div>
             
-            <div className="text-center md:text-right">
-              <p className="text-sm text-gray-600 mb-2">Questions?</p>
-              <a 
-                href="mailto:ryanrez44@gmail.com" 
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                ryanrez44@gmail.com
-              </a>
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">GPMS Integration-Ready</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Export reports in GPMS-compatible formats with a single click. 
+                Streamline your quarterly submissions.
+              </p>
+            </div>
+            
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-5 5v-5z"></path>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19H7a2 2 0 01-2-2V7a2 2 0 012-2h4m4 0v18"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Proactive Alerts</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Set custom thresholds and receive early warnings. 
+                Stay ahead of compliance requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Designed for Facility Leaders */}
+      <div className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl font-light text-gray-900 mb-6">
+                Designed for Facility Leaders
+              </h2>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Whether you're a facility manager, operations lead, or compliance officer—ComplianceIQ 
+                saves hours of admin time, reduces audit risk, and gives you peace of mind.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium">Simple Interface</span>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium">Instant Calculations</span>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium">Data-Safe & Compliant</span>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <svg className="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium">Export Templates</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-3xl p-8 shadow-xl">
+              <h3 className="text-lg font-semibold text-gray-900 mb-6">Trusted by Facility Leaders</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <span className="text-blue-600 font-semibold text-sm">FM</span>
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900">Facility Managers</div>
+                    <div className="text-sm text-gray-600">Save 8+ hours per quarter on reporting</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                    <span className="text-green-600 font-semibold text-sm">CO</span>
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900">Compliance Officers</div>
+                    <div className="text-sm text-gray-600">Reduce audit risk with real-time monitoring</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                    <span className="text-purple-600 font-semibold text-sm">OL</span>
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900">Operations Leaders</div>
+                    <div className="text-sm text-gray-600">Streamline workforce planning decisions</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Why It Matters - Enhanced */}
+      <div className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-light text-gray-900 mb-6">
+              Why It Matters
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              The cost of non-compliance extends beyond financial penalties—it impacts your facility's reputation and resident care quality
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Penalty Calculator */}
+            <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl p-8 border border-red-100">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Compliance Risk Calculator</h3>
+              
+              <div className="bg-white rounded-2xl p-6 mb-6">
+                <div className="text-center">
+                  <div className="text-4xl font-light text-red-600 mb-2">$31.92</div>
+                  <div className="text-sm text-gray-600 mb-4">per bed, per day penalty</div>
+                  
+                  <div className="bg-gray-50 rounded-xl p-4">
+                    <div className="text-sm text-gray-600 mb-2">100-bed facility example:</div>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span>Daily risk:</span>
+                        <span className="font-semibold text-red-600">$3,192</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Monthly risk:</span>
+                        <span className="font-semibold text-red-600">$95,760</span>
+                      </div>
+                      <div className="flex justify-between border-t pt-2">
+                        <span>Annual risk:</span>
+                        <span className="font-bold text-red-700 text-lg">$1,165,080</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <button
+                  onClick={onNavigateToCalculator}
+                  className="bg-red-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-red-700 transition-colors"
+                >
+                  Calculate Your Risk
+                </button>
+                <p className="text-xs text-gray-500 mt-2">Free assessment • No signup required</p>
+              </div>
+            </div>
+            
+            {/* Supporting Stats */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Beyond Financial Impact</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Reputation Protection</h4>
+                      <p className="text-gray-600 text-sm">Maintain community trust and family confidence in your care standards</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                      <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Operational Excellence</h4>
+                      <p className="text-gray-600 text-sm">Optimize staffing decisions and resource allocation with real-time insights</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                      <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Peace of Mind</h4>
+                      <p className="text-gray-600 text-sm">Sleep better knowing your compliance status is monitored 24/7</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-blue-50 rounded-2xl p-6">
+                <h4 className="font-semibold text-blue-900 mb-3">Key Compliance Metrics</h4>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-2xl font-light text-blue-600">215</div>
+                    <div className="text-blue-700">Required minutes/day</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-light text-blue-600">30s</div>
+                    <div className="text-blue-700">Assessment time</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Upgrade */}
+      <footer className="bg-slate-900 text-white py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-4 gap-12 mb-12">
+            {/* Brand Section */}
+            <div className="lg:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                {/* Enhanced Futuristic Logo */}
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-30">
+                    <svg className="w-full h-full" viewBox="0 0 40 40" fill="none">
+                      <path d="M10 10h6v6h-6zM24 10h6v6h-6zM10 24h6v6h-6zM24 24h6v6h-6z" fill="currentColor"/>
+                      <path d="M16 13h8M13 16v8M27 16v8M16 27h8" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  </div>
+                  <svg className="w-5 h-5 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                  </svg>
+                </div>
+                <span className="text-2xl font-semibold">ComplianceIQ</span>
+              </div>
+              <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
+                Empowering safer aged care through intelligent compliance tools. 
+                Melbourne-based. Clinician-informed. GPMS-ready.
+              </p>
+              <div className="flex items-center gap-4 text-sm text-gray-400">
+                <span>🇦🇺 Australian owned</span>
+                <span>•</span>
+                <span>🔒 Data secure</span>
+                <span>•</span>
+                <span>📊 GPMS compatible</span>
+              </div>
+            </div>
+            
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-semibold mb-6">Platform</h4>
+              <ul className="space-y-3 text-gray-300">
+                <li>
+                  <button 
+                    onClick={onNavigateToCalculator}
+                    className="hover:text-white transition-colors"
+                  >
+                    Calculator
+                  </button>
+                </li>
+                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
+              </ul>
+            </div>
+            
+            {/* Resources & Legal */}
+            <div>
+              <h4 className="font-semibold mb-6">Resources</h4>
+              <ul className="space-y-3 text-gray-300">
+                <li>
+                  <a 
+                    href="https://www.agedcarequality.gov.au/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    ACQSC
+                  </a>
+                </li>
+                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
+                <li>
+                  <a 
+                    href="mailto:ryanrez44@gmail.com" 
+                    className="hover:text-white transition-colors"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
           
-          <div className="border-t border-gray-200 mt-8 pt-8">
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-6 text-xs text-gray-500">
-              <p>© 2025 ComplianceIQ. Made in Melbourne, Australia.</p>
-              
-              <div className="flex flex-wrap items-center gap-6">
-                <button 
-                  onClick={onNavigateToCalculator}
-                  className="hover:text-gray-700 transition-colors"
-                >
-                  Calculator
-                </button>
-                <a 
-                  href="https://www.agedcarequality.gov.au/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:text-gray-700 transition-colors"
-                >
-                  ACQSC
-                </a>
+          {/* Bottom Section */}
+          <div className="border-t border-gray-700 pt-8">
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+              <div className="text-sm text-gray-400">
+                © 2025 ComplianceIQ Pty Ltd. All rights reserved. Made in Melbourne, Australia.
               </div>
               
-              <div className="text-center lg:text-right">
-                <p className="text-xs text-gray-400">
-                  For planning purposes only. Consult your compliance officer for official guidance.
-                </p>
+              <div className="flex items-center gap-6 text-sm text-gray-400">
+                <span>Australian Business Number: [Pending]</span>
+                <span>•</span>
+                <span>🏥 Healthcare Technology</span>
+              </div>
+              
+              <div className="text-xs text-gray-500 max-w-md text-center lg:text-right">
+                For planning purposes only. Consult your compliance officer for official guidance. 
+                ComplianceIQ is not affiliated with ACQSC or any government agency.
               </div>
             </div>
           </div>
