@@ -24,20 +24,21 @@ function App() {
               onClick={navigateToLanding}
               className="flex items-center gap-3"
             >
-              {/* Caring + Analytical Logo */}
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center relative">
-                {/* Heart shape (caring) */}
-                <svg className="w-4 h-4 text-white absolute" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-                {/* Analytics bars overlay */}
-                <div className="absolute inset-0 flex items-end justify-center pb-1 opacity-80">
-                  <div className="flex items-end gap-0.5">
-                    <div className="w-0.5 h-1 bg-white"></div>
-                    <div className="w-0.5 h-2 bg-white"></div>
-                    <div className="w-0.5 h-1.5 bg-white"></div>
-                  </div>
+              {/* Futuristic Logo - Circuit/Data Flow Design */}
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center relative overflow-hidden">
+                {/* Circuit pattern background */}
+                <div className="absolute inset-0 opacity-20">
+                  <svg className="w-full h-full" viewBox="0 0 32 32" fill="none">
+                    <path d="M8 8h4v4H8zM20 8h4v4h-4zM8 20h4v4H8zM20 20h4v4h-4z" fill="currentColor"/>
+                    <path d="M12 10h8M10 12v8M22 12v8M12 22h8" stroke="currentColor" strokeWidth="1"/>
+                  </svg>
                 </div>
+                {/* Central data icon */}
+                <svg className="w-4 h-4 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                {/* Pulse effect */}
+                <div className="absolute inset-0 bg-blue-400 opacity-30 rounded-lg animate-pulse"></div>
               </div>
               <span className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors">
                 ComplianceIQ
