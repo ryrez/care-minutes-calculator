@@ -332,12 +332,13 @@ function LandingPage({ onNavigateToCalculator }) {
             
             {/* Copyright */}
             <div className="text-sm text-gray-400">
-              © 2025 ComplianceIQ. All rights reserved. Made in Melbourne, Australia.
+              © 2025 Ryan Rezel trading as ComplianceIQ. All rights reserved. Made in Melbourne, Australia.
             </div>
             
             {/* Disclaimer */}
             <div className="text-xs text-gray-500 max-w-2xl">
-              For planning purposes only. Consult your compliance officer for official guidance. 
+              Features shown are planned developments. Current functionality limited to care minutes calculation.
+              For planning purposes only - consult compliance officers for official guidance. 
               ComplianceIQ is not affiliated with ACQSC or any government agency.
             </div>
           </div>
