@@ -398,104 +398,35 @@ function LandingPage({ onNavigateToCalculator }) {
         </div>
       </div>
 
-      {/* Footer Upgrade */}
-      <footer className="bg-slate-900 text-white py-16">
+      {/* Simple Footer */}
+      <footer className="bg-slate-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-4 gap-12 mb-12">
-            {/* Brand Section */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                {/* Enhanced Futuristic Logo */}
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-30">
-                    <svg className="w-full h-full" viewBox="0 0 40 40" fill="none">
-                      <path d="M10 10h6v6h-6zM24 10h6v6h-6zM10 24h6v6h-6zM24 24h6v6h-6z" fill="currentColor"/>
-                      <path d="M16 13h8M13 16v8M27 16v8M16 27h8" stroke="currentColor" strokeWidth="1.5"/>
-                    </svg>
-                  </div>
-                  <svg className="w-5 h-5 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          <div className="flex flex-col items-center text-center gap-6">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 opacity-30">
+                  <svg className="w-full h-full" viewBox="0 0 40 40" fill="none">
+                    <path d="M10 10h6v6h-6zM24 10h6v6h-6zM10 24h6v6h-6zM24 24h6v6h-6z" fill="currentColor"/>
+                    <path d="M16 13h8M13 16v8M27 16v8M16 27h8" stroke="currentColor" strokeWidth="1.5"/>
                   </svg>
                 </div>
-                <span className="text-2xl font-semibold">ComplianceIQ</span>
+                <svg className="w-4 h-4 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
               </div>
-              <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
-                Empowering safer aged care through intelligent compliance tools. 
-                Melbourne-based. Clinician-informed. GPMS-ready.
-              </p>
-              <div className="flex items-center gap-4 text-sm text-gray-400">
-                <span>🇦🇺 Australian owned</span>
-                <span>•</span>
-                <span>🔒 Data secure</span>
-                <span>•</span>
-                <span>📊 GPMS compatible</span>
-              </div>
+              <span className="text-xl font-semibold">ComplianceIQ</span>
             </div>
             
-            {/* Quick Links */}
-            <div>
-              <h4 className="font-semibold mb-6">Platform</h4>
-              <ul className="space-y-3 text-gray-300">
-                <li>
-                  <button 
-                    onClick={onNavigateToCalculator}
-                    className="hover:text-white transition-colors"
-                  >
-                    Calculator
-                  </button>
-                </li>
-                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
-              </ul>
+            {/* Copyright */}
+            <div className="text-sm text-gray-400">
+              © 2025 ComplianceIQ. All rights reserved. Made in Melbourne, Australia.
             </div>
             
-            {/* Resources & Legal */}
-            <div>
-              <h4 className="font-semibold mb-6">Resources</h4>
-              <ul className="space-y-3 text-gray-300">
-                <li>
-                  <a 
-                    href="https://www.agedcarequality.gov.au/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:text-white transition-colors"
-                  >
-                    ACQSC
-                  </a>
-                </li>
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                <li>
-                  <a 
-                    href="mailto:ryanrez44@gmail.com" 
-                    className="hover:text-white transition-colors"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-          {/* Bottom Section */}
-          <div className="border-t border-gray-700 pt-8">
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-              <div className="text-sm text-gray-400">
-                © 2025 ComplianceIQ Pty Ltd. All rights reserved. Made in Melbourne, Australia.
-              </div>
-              
-              <div className="flex items-center gap-6 text-sm text-gray-400">
-                <span>Australian Business Number: [Pending]</span>
-                <span>•</span>
-                <span>🏥 Healthcare Technology</span>
-              </div>
-              
-              <div className="text-xs text-gray-500 max-w-md text-center lg:text-right">
-                For planning purposes only. Consult your compliance officer for official guidance. 
-                ComplianceIQ is not affiliated with ACQSC or any government agency.
-              </div>
+            {/* Disclaimer */}
+            <div className="text-xs text-gray-500 max-w-2xl">
+              For planning purposes only. Consult your compliance officer for official guidance. 
+              ComplianceIQ is not affiliated with ACQSC or any government agency.
             </div>
           </div>
         </div>
