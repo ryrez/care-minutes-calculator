@@ -64,9 +64,9 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
                     <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
                   </svg>
                 </div>
-                <div className="text-center">
+                <div>
                   <div className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
-                  <div className="text-sm font-medium" style={{ color: '#34D399', opacity: 0.8 }}>
+                  <div className="text-sm font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
                     Care more. Calculate less.
                   </div>
                 </div>
@@ -299,9 +299,9 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
                     <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
                   </svg>
                 </div>
-                <div className="text-center">
+                <div>
                   <div className="text-3xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
-                  <div className="text-base font-medium" style={{ color: '#34D399', opacity: 0.8 }}>
+                  <div className="text-base font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
                     Care more. Calculate less.
                   </div>
                 </div>
