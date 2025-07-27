@@ -274,7 +274,7 @@ function LandingPage({ onNavigateToCalculator }) {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Operational Excellence</h4>
-                      <p className="text-gray-600 text-sm">Optimize staffing decisions and resource allocation with real-time insights</p>
+                      <p className="text-gray-600 text-sm">Optimise staffing decisions and resource allocation with real-time insights</p>
                     </div>
                   </div>
                   
