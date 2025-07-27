@@ -172,7 +172,7 @@ function LandingPage({ onNavigateToCalculator }) {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">GPMS Integration-Ready</h3>
               <p className="text-gray-600 leading-relaxed">
-                Built for GPMS intergration. Export functionality coming in 2026 to 
+                Built for GPMS integration. Export functionality coming in 2026 to 
                 Streamline your quarterly submissions.
               </p>
             </div>
