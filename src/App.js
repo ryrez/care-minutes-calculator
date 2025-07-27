@@ -112,7 +112,7 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
               Care Minutes Compliance Calculator
             </h1>
             <p className="text-xl sm:text-2xl mb-8 max-w-4xl mx-auto" style={{ color: '#374151', lineHeight: '1.5' }}>
-              Aged care facilities are under attack by bureaucratic complexity. Managers spend sleepless nights wondering if they're compliant. We believe facility managers should focus on caring for residents, not calculating penalties. That's why we built ComplianceIQ.
+              Aged care compliance doesn't have to be complicated. Facility managers deserve tools that work as hard as they do. We built ComplianceIQ to give you instant clarity on compliance status, so you can focus on delivering exceptional resident care.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
