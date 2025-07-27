@@ -50,28 +50,25 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 flex items-center justify-center" style={{ position: 'relative' }}>
+              <div className="flex items-center gap-3">
                 <div style={{
-                  width: '48px',
-                  height: '48px',
+                  width: '32px',
+                  height: '32px',
                   background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
                   clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'relative'
+                  justifyContent: 'center'
                 }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
                     <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
                   </svg>
                 </div>
-              </div>
-              <div>
-                <span className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</span>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-sm px-2 py-1 rounded-full" style={{ 
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</span>
+                  <span className="text-sm font-medium px-3 py-1 rounded-full" style={{ 
                     backgroundColor: '#F0FDF4', 
-                    color: '#166534',
+                    color: '#059669',
                     border: '1px solid #BBF7D0'
                   }}>
                     Care more. Calculate less.
@@ -119,7 +116,7 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
               Care Minutes Compliance Calculator
             </h1>
             <p className="text-xl sm:text-2xl mb-8 max-w-4xl mx-auto" style={{ color: '#374151', lineHeight: '1.5' }}>
-              Aged care compliance doesn't have to be complicated. Facility managers deserve tools that work as hard as they do. We built ComplianceIQ to give you instant clarity on compliance status, so you can focus on delivering exceptional resident care.
+              Aged care facilities are under attack by bureaucratic complexity. Managers spend sleepless nights wondering if they're compliant. We believe facility managers should focus on caring for residents, not calculating penalties. That's why we built ComplianceIQ.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
@@ -293,21 +290,29 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
           <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div style={{
-                width: '40px',
-                height: '40px',
+                width: '32px',
+                height: '32px',
                 background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
                 clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
                   <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
                 </svg>
               </div>
-              <span className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</span>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</span>
+                <span className="text-xs font-medium px-2 py-1 rounded-full" style={{ 
+                  backgroundColor: '#F0FDF4', 
+                  color: '#059669',
+                  border: '1px solid #BBF7D0'
+                }}>
+                  Care more. Calculate less.
+                </span>
+              </div>
             </div>
-            <p className="text-base mb-4" style={{ color: '#6B7280' }}>Care more. Calculate less.</p>
           </div>
           
           {/* Clinical Disclaimers */}
@@ -471,32 +476,30 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
         <div className="max-w-4xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <button 
-                onClick={onNavigateToLanding}
-                className="flex items-center justify-center transition-colors hover:bg-gray-100 rounded-lg p-2"
-                style={{ position: 'relative' }}
-              >
+              <div className="flex items-center gap-3">
                 <div style={{
-                  width: '48px',
-                  height: '48px',
+                  width: '32px',
+                  height: '32px',
                   background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
                   clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
                     <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
                   </svg>
                 </div>
-              </button>
-              <div>
-                <h1 className="text-2xl font-bold" style={{ color: '#1F2937' }}>
-                  Care Minutes Compliance Calculator
-                </h1>
-                <p className="text-base" style={{ color: '#6B7280' }}>
-                  Care more. Calculate less.
-                </p>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</span>
+                  <span className="text-xs font-medium px-2 py-1 rounded-full" style={{ 
+                    backgroundColor: '#F0FDF4', 
+                    color: '#059669',
+                    border: '1px solid #BBF7D0'
+                  }}>
+                    Care more. Calculate less.
+                  </span>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
