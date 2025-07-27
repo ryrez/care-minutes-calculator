@@ -261,79 +261,71 @@ function CalculatorComponent() {
             </div>
 
             {/* Detailed Breakdown */}
-            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+            <div className="grid lg:grid-cols-2 gap-8">
               {/* Current Performance */}
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 sm:p-8 shadow-sm">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-6">Current Performance</h3>
-                <div className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-sm text-gray-600">Total weekly hours:</div>
-                    <div className="text-right">
-                      <span className="text-2xl font-bold text-gray-900">{results.totalWeeklyHours}</span>
-                      <span className="text-sm text-gray-600 ml-1">hours</span>
-                    </div>
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-8 shadow-sm h-fit">
+                <h3 className="text-xl font-bold text-gray-900 mb-8 text-center">Current Performance</h3>
+                <div className="space-y-8">
+                  <div className="text-center">
+                    <div className="text-sm font-medium text-gray-600 mb-2">Total weekly hours</div>
+                    <div className="text-4xl font-bold text-gray-900 mb-1">{results.totalWeeklyHours}</div>
+                    <div className="text-sm text-gray-500">hours</div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-sm text-gray-600">Care minutes/resident/day:</div>
-                    <div className="text-right">
-                      <span className="text-2xl font-bold text-gray-900">{results.careMinutesPerResident}</span>
-                      <span className="text-sm text-gray-600 ml-1">minutes</span>
-                    </div>
+                  <div className="text-center">
+                    <div className="text-sm font-medium text-gray-600 mb-2">Care minutes/resident/day</div>
+                    <div className="text-4xl font-bold text-gray-900 mb-1">{results.careMinutesPerResident}</div>
+                    <div className="text-sm text-gray-500">minutes</div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-sm text-gray-600">RN minutes/resident/day:</div>
-                    <div className="text-right">
-                      <span className="text-2xl font-bold text-gray-900">{results.rnMinutesPerResident}</span>
-                      <span className="text-sm text-gray-600 ml-1">minutes</span>
-                    </div>
+                  <div className="text-center">
+                    <div className="text-sm font-medium text-gray-600 mb-2">RN minutes/resident/day</div>
+                    <div className="text-4xl font-bold text-gray-900 mb-1">{results.rnMinutesPerResident}</div>
+                    <div className="text-sm text-gray-500">minutes</div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-sm text-gray-600">Residents:</div>
-                    <div className="text-right">
-                      <span className="text-2xl font-bold text-gray-900">{results.residentCount}</span>
-                    </div>
+                  <div className="text-center">
+                    <div className="text-sm font-medium text-gray-600 mb-2">Residents</div>
+                    <div className="text-4xl font-bold text-gray-900">{results.residentCount}</div>
                   </div>
                 </div>
               </div>
 
               {/* Compliance Targets */}
-              <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 sm:p-8 shadow-sm">
-                <h3 className="text-lg sm:text-xl font-bold text-blue-900 mb-6">Compliance Targets</h3>
-                <div className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-sm text-blue-700">Total required:</div>
-                    <div className="text-right">
-                      <span className="text-2xl font-bold text-blue-900">215</span>
-                      <span className="text-sm text-blue-700 ml-1">minutes/resident/day</span>
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-8 shadow-sm h-fit">
+                <h3 className="text-xl font-bold text-blue-900 mb-8 text-center">Compliance Targets</h3>
+                <div className="space-y-8">
+                  <div className="text-center">
+                    <div className="text-sm font-medium text-blue-700 mb-2">Total required</div>
+                    <div className="text-4xl font-bold text-blue-900 mb-1">215</div>
+                    <div className="text-sm text-blue-600">minutes/resident/day</div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="text-sm font-medium text-blue-700 mb-2">RN required</div>
+                    <div className="text-4xl font-bold text-blue-900 mb-1">44</div>
+                    <div className="text-sm text-blue-600">minutes/resident/day</div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="text-sm font-medium text-blue-700 mb-2">Total compliance</div>
+                    <div className={`inline-flex items-center justify-center px-4 py-2 rounded-lg text-4xl font-bold ${
+                      results.isTotalCompliant 
+                        ? 'bg-green-100 text-green-700 border border-green-200' 
+                        : 'bg-red-100 text-red-700 border border-red-200'
+                    }`}>
+                      {results.totalCompliancePercentage}%
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-sm text-blue-700">RN required:</div>
-                    <div className="text-right">
-                      <span className="text-2xl font-bold text-blue-900">44</span>
-                      <span className="text-sm text-blue-700 ml-1">minutes/resident/day</span>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-sm text-blue-700">Total compliance:</div>
-                    <div className="text-right">
-                      <span className={`text-2xl font-bold ${results.isTotalCompliant ? 'text-green-700' : 'text-red-600'}`}>
-                        {results.totalCompliancePercentage}%
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-sm text-blue-700">RN compliance:</div>
-                    <div className="text-right">
-                      <span className={`text-2xl font-bold ${results.isRnCompliant ? 'text-green-700' : 'text-red-600'}`}>
-                        {results.rnCompliancePercentage}%
-                      </span>
+                  <div className="text-center">
+                    <div className="text-sm font-medium text-blue-700 mb-2">RN compliance</div>
+                    <div className={`inline-flex items-center justify-center px-4 py-2 rounded-lg text-4xl font-bold ${
+                      results.isRnCompliant 
+                        ? 'bg-green-100 text-green-700 border border-green-200' 
+                        : 'bg-red-100 text-red-700 border border-red-200'
+                    }`}>
+                      {results.rnCompliancePercentage}%
                     </div>
                   </div>
                 </div>
@@ -566,3 +558,4 @@ function CalculatorComponent() {
 }
 
 export default CalculatorComponent;
+
