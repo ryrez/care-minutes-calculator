@@ -310,9 +310,9 @@ function App() {
   };
 
   return (
-    <div className="App bg-gray-50 min-h-screen">
+    <div className="App min-h-screen">
       {/* Unified Navigation */}
-      <nav className="bg-white border-b border-gray-100 sticky top-0 z-50">
+      <nav className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
@@ -328,7 +328,7 @@ function App() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                 </svg>
               </div>
-              <span className="text-xl font-semibold text-gray-900">ComplianceIQ</span>
+              <span className="text-xl font-semibold text-slate-900">ComplianceIQ</span>
             </div>
             
             {/* Navigation Links */}
@@ -338,7 +338,7 @@ function App() {
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   currentPage === 'landing'
                     ? 'bg-blue-100 text-blue-700'
-                    : 'text-gray-600 hover:text-gray-900'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Home
@@ -349,10 +349,10 @@ function App() {
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   currentPage === 'calculator'
                     ? 'bg-blue-100 text-blue-700'
-                    : 'text-gray-600 hover:text-gray-900'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                Calculator
+                Analytics Dashboard
               </button>
             </div>
           </div>
@@ -365,48 +365,7 @@ function App() {
       )}
       
       {currentPage === 'calculator' && (
-        <div className="bg-gray-50 min-h-screen py-12">
-          <div className="max-w-4xl mx-auto px-8">
-            {/* Back Button */}
-            <button
-              onClick={navigateToLanding}
-              className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
-              Back to home
-            </button>
-            
-            {/* Calculator Header */}
-            <div className="text-center mb-8">
-              <h1 className="text-4xl font-light text-gray-900 mb-4">
-                Care Minutes Calculator
-              </h1>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Calculate your facility's care minutes compliance status for planning purposes
-              </p>
-              
-              {/* Important Disclaimer */}
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-6 max-w-3xl mx-auto">
-                <div className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                  </svg>
-                  <div className="text-sm text-yellow-800">
-                    <p className="font-medium mb-1">Planning Tool Only</p>
-                    <p>This calculator provides estimates for planning purposes. Results are not guaranteed. Always consult your compliance officer for official guidance.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Calculator Container */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
-              <Calculator />
-            </div>
-          </div>
-        </div>
+        <Calculator />
       )}
     </div>
   );
