@@ -225,7 +225,7 @@ function LandingPage({ onNavigateToCalculator }) {
               Features are prioritized based on user feedback frequency. Use our calculator and let us know what you need most.
             </p>
             <button 
-              onClick={navigateToCalculator}
+              onClick={onNavigateToCalculator}
               className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
               Try Calculator & Share Feedback
