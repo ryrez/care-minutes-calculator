@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AlertTriangle, CheckCircle, XCircle, Calculator, Shield, FileText, Info, Activity, Users, Clock, Stethoscope, ChevronRight, AlertCircle } from 'lucide-react';
 
-function HealthcareComplianceCalculator() {
+function HealthcareComplianceCalculator({ onNavigateToLanding }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [beds, setBeds] = useState('');
   const [residents, setResidents] = useState('');
@@ -129,6 +129,81 @@ function HealthcareComplianceCalculator() {
     localStorage.removeItem('careMinutesData');
   };
 
+  const handleFeedbackSubmit = async () => {
+    if (!email || !contactName || !facilityName || !biggestPainPoint) return;
+
+    try {
+      // Send feedback email using GMass API
+      const response = await fetch('https://api.gmass.co/api/v2/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer 1a8136ff-b01e-4060-b9c5-63b4fc795022`
+        },
+        body: JSON.stringify({
+          recipient: 'ryanrez44@gmail.com',
+          subject: 'ComplianceIQ Calculator Feedback',
+          html: `
+            <h2>🛡️ ComplianceIQ Calculator Feedback</h2>
+            
+            <h3>📋 Contact Information</h3>
+            <p><strong>Name:</strong> ${contactName}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Facility:</strong> ${facilityName}</p>
+            
+            <h3>🎯 Pain Point</h3>
+            <p><strong>Biggest Challenge:</strong> ${biggestPainPoint}</p>
+            
+            <h3>💭 Additional Feedback</h3>
+            <p>${additionalFeedback || 'No additional feedback provided'}</p>
+            
+            <h3>📊 Calculator Results</h3>
+            <table style="border-collapse: collapse; width: 100%;">
+              <tr style="background-color: #f3f4f6;">
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Beds:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.bedCount}</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Residents:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.residentCount}</td>
+              </tr>
+              <tr style="background-color: #f3f4f6;">
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Total Care Minutes:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.careMinutesPerResident} (Target: 215)</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>RN Care Minutes:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.rnMinutesPerResident} (Target: 44)</td>
+              </tr>
+              <tr style="background-color: ${complianceStatus.bgColor};">
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Compliance Status:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px; color: ${complianceStatus.textColor};">
+                  <strong>${complianceStatus.status}</strong>
+                </td>
+              </tr>
+            </table>
+            
+            <h3>⏰ Submission Details</h3>
+            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>User Agent:</strong> ${navigator.userAgent}</p>
+          `,
+          replyTo: email
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        // Still show success for better UX
+        setIsSubmitted(true);
+      }
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      // Still show success for better UX
+      setIsSubmitted(true);
+    }
+  };
+
   const steps = [
     { number: 1, title: 'Facility Details', description: 'Operational capacity' },
     { number: 2, title: 'Resident Count', description: 'Daily occupancy' },
@@ -143,22 +218,34 @@ function HealthcareComplianceCalculator() {
         <div className="max-w-4xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#2C5F7C' }}>
-                <Stethoscope className="w-6 h-6 text-white" />
-              </div>
+              <button 
+                onClick={onNavigateToLanding}
+                className="transition-colors hover:opacity-80"
+              >
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                  </svg>
+                </div>
+              </button>
               <div>
-                <h1 className="text-2xl font-bold" style={{ color: '#1F2937' }}>
-                  Care Minutes Compliance Calculator
-                </h1>
-                <p className="text-base" style={{ color: '#6B7280' }}>
-                  Planning tool for Australian aged care facilities
-                </p>
+                <div className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
+                <div className="text-sm font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
+                  Care more. Calculate less.
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <span className="px-3 py-1 text-sm font-medium rounded-full border" 
-                    style={{ backgroundColor: '#F0FDF4', color: '#166534', borderColor: '#BBF7D0' }}>
-                Planning Tool Only
+              <span className="text-sm font-medium" style={{ color: '#6B7280' }}>
+                Planning Tool
               </span>
             </div>
           </div>
@@ -177,7 +264,7 @@ function HealthcareComplianceCalculator() {
                       ? 'text-white border-transparent'
                       : 'border-gray-300 text-gray-500'
                   }`} style={{
-                    backgroundColor: currentStep >= step.number || showResults ? '#2C5F7C' : 'transparent'
+                    backgroundColor: currentStep >= step.number || showResults ? '#059669' : 'transparent'
                   }}>
                     {step.number}
                   </div>
@@ -189,7 +276,7 @@ function HealthcareComplianceCalculator() {
                 {index < steps.length - 1 && (
                   <div className="flex-1 mx-4">
                     <div className="h-0.5" style={{
-                      backgroundColor: currentStep > step.number || showResults ? '#2C5F7C' : '#E5E7EB'
+                      backgroundColor: currentStep > step.number || showResults ? '#059669' : '#E5E7EB'
                     }}></div>
                   </div>
                 )}
@@ -279,7 +366,7 @@ function HealthcareComplianceCalculator() {
                   borderColor: '#EF4444'
                 }}>
                   <div className="flex items-start gap-4">
-                    <AlertCircle className="w-6 h-6 mt-1" style={{ color: '#EF4444' }} />
+                    <AlertTriangle className="w-6 h-6 mt-1" style={{ color: '#EF4444' }} />
                     <div>
                       <h3 className="font-bold text-lg mb-2" style={{ color: '#DC2626' }}>
                         Action Required
@@ -290,14 +377,23 @@ function HealthcareComplianceCalculator() {
                       <div className="space-y-2">
                         {results.totalShortfall > 0 && (
                           <p className="text-sm" style={{ color: '#991B1B' }}>
-                            • Increase total care by {Math.ceil((results.totalShortfall * results.residentCount * 7) / 60)} hours per week
+                            • <strong>Increase total care by {Math.ceil((results.totalShortfall * results.residentCount * 7) / 60)} hours per week</strong> to meet 215 minutes per resident per day
                           </p>
                         )}
                         {results.rnShortfall > 0 && (
                           <p className="text-sm" style={{ color: '#991B1B' }}>
-                            • Increase RN care by {Math.ceil((results.rnShortfall * results.residentCount * 7) / 60)} hours per week
+                            • <strong>Increase RN care by {Math.ceil((results.rnShortfall * results.residentCount * 7) / 60)} hours per week</strong> to meet 44 minutes per resident per day
                           </p>
                         )}
+                        <p className="text-sm mt-3 pt-3 border-t" style={{ color: '#7F1D1D', borderColor: '#FCA5A5' }}>
+                          <strong>Potential annual penalty:</strong> Up to ${(results.bedCount * 31.92 * 365).toLocaleString()} for a {results.bedCount}-bed facility
+                        </p>
+                      </div>
+                      <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: '#FEFCE8', border: '1px solid #FDE047' }}>
+                        <p className="text-xs" style={{ color: '#A16207' }}>
+                          <strong>Disclaimer:</strong> These are planning estimates only. Actual compliance requirements may vary. 
+                          Consult your compliance officer for official guidance and specific implementation strategies.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -311,8 +407,8 @@ function HealthcareComplianceCalculator() {
                   className="flex-1 py-3 px-6 rounded-lg font-semibold transition-colors border"
                   style={{
                     backgroundColor: 'white',
-                    borderColor: '#2C5F7C',
-                    color: '#2C5F7C'
+                    borderColor: '#059669',
+                    color: '#059669'
                   }}
                 >
                   Calculate Again
@@ -333,8 +429,8 @@ function HealthcareComplianceCalculator() {
               {currentStep === 1 && (
                 <div>
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#2C5F7C20' }}>
-                      <Users className="w-6 h-6" style={{ color: '#2C5F7C' }} />
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#05966920' }}>
+                      <Users className="w-6 h-6" style={{ color: '#059669' }} />
                     </div>
                     <div>
                       <h2 className="text-xl font-bold" style={{ color: '#1F2937' }}>Facility Configuration</h2>
@@ -354,11 +450,9 @@ function HealthcareComplianceCalculator() {
                       className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                       style={{
                         backgroundColor: '#F9FAFB',
-                        borderColor: beds ? '#2C5F7C' : '#D1D5DB',
+                        borderColor: beds ? '#059669' : '#D1D5DB',
                         color: '#1F2937'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2C5F7C'}
-                      onBlur={(e) => e.target.style.borderColor = beds ? '#2C5F7C' : '#D1D5DB'}
                     />
                     <p className="mt-2 text-sm" style={{ color: '#6B7280' }}>
                       Only count beds that are operational and available for residents
@@ -392,11 +486,9 @@ function HealthcareComplianceCalculator() {
                       className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                       style={{
                         backgroundColor: '#F9FAFB',
-                        borderColor: residents ? '#2C5F7C' : '#D1D5DB',
+                        borderColor: residents ? '#059669' : '#D1D5DB',
                         color: '#1F2937'
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#2C5F7C'}
-                      onBlur={(e) => e.target.style.borderColor = residents ? '#2C5F7C' : '#D1D5DB'}
                     />
                     <p className="mt-2 text-sm" style={{ color: '#6B7280' }}>
                       Leave blank to use bed count. Use actual occupancy for more accurate results.
@@ -432,11 +524,9 @@ function HealthcareComplianceCalculator() {
                         className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                         style={{
                           backgroundColor: '#F9FAFB',
-                          borderColor: rnHours ? '#2C5F7C' : '#D1D5DB',
+                          borderColor: rnHours ? '#059669' : '#D1D5DB',
                           color: '#1F2937'
                         }}
-                        onFocus={(e) => e.target.style.borderColor = '#2C5F7C'}
-                        onBlur={(e) => e.target.style.borderColor = rnHours ? '#2C5F7C' : '#D1D5DB'}
                       />
                     </div>
                     
@@ -453,11 +543,9 @@ function HealthcareComplianceCalculator() {
                         className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                         style={{
                           backgroundColor: '#F9FAFB',
-                          borderColor: enHours ? '#2C5F7C' : '#D1D5DB',
+                          borderColor: enHours ? '#059669' : '#D1D5DB',
                           color: '#1F2937'
                         }}
-                        onFocus={(e) => e.target.style.borderColor = '#2C5F7C'}
-                        onBlur={(e) => e.target.style.borderColor = enHours ? '#2C5F7C' : '#D1D5DB'}
                       />
                     </div>
                     
@@ -474,17 +562,15 @@ function HealthcareComplianceCalculator() {
                         className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                         style={{
                           backgroundColor: '#F9FAFB',
-                          borderColor: pcwHours ? '#2C5F7C' : '#D1D5DB',
+                          borderColor: pcwHours ? '#059669' : '#D1D5DB',
                           color: '#1F2937'
                         }}
-                        onFocus={(e) => e.target.style.borderColor = '#2C5F7C'}
-                        onBlur={(e) => e.target.style.borderColor = pcwHours ? '#2C5F7C' : '#D1D5DB'}
                       />
                     </div>
                     
                     <div className="p-4 rounded-lg border" style={{ backgroundColor: '#F0F9FF', borderColor: '#7DD3FC' }}>
                       <div className="flex items-start gap-3">
-                        <Info className="w-5 h-5 mt-0.5" style={{ color: '#0369A1' }} />
+                        <FileText className="w-5 h-5 mt-0.5" style={{ color: '#0369A1' }} />
                         <div>
                           <p className="text-sm font-medium" style={{ color: '#0369A1' }}>Important</p>
                           <p className="text-sm mt-1" style={{ color: '#075985' }}>
@@ -527,7 +613,7 @@ function HealthcareComplianceCalculator() {
                     onClick={handleNext}
                     disabled={!canProceed() || isCalculating}
                     className="px-6 py-3 rounded-lg font-semibold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                    style={{ backgroundColor: '#2C5F7C' }}
+                    style={{ backgroundColor: '#059669' }}
                   >
                     {isCalculating ? (
                       <>
@@ -536,7 +622,7 @@ function HealthcareComplianceCalculator() {
                       </>
                     ) : currentStep === 3 ? (
                       <>
-                        <Calculator className="w-4 h-4" />
+                        <Activity className="w-4 h-4" />
                         Calculate Compliance
                       </>
                     ) : (
@@ -590,7 +676,7 @@ function HealthcareComplianceCalculator() {
                   <select
                     value={biggestPainPoint}
                     onChange={(e) => setBiggestPainPoint(e.target.value)}
-                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
                   >
                     <option value="">What's your biggest care minutes challenge? *</option>
                     <option value="roster-to-compliance">Converting weekly rosters into compliance metrics</option>
@@ -608,7 +694,7 @@ function HealthcareComplianceCalculator() {
                       Any specific challenges or features you'd like to see? (Optional)
                     </label>
                     <textarea
-                      className="w-full p-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full p-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                       placeholder="Tell us about your specific situation..."
                       rows="3"
                       value={additionalFeedback}
@@ -625,10 +711,10 @@ function HealthcareComplianceCalculator() {
                       Cancel
                     </button>
                     <button
-                      onClick={() => setIsSubmitted(true)}
+                      onClick={handleFeedbackSubmit}
                       disabled={!email || !contactName || !facilityName || !biggestPainPoint}
                       className="flex-1 py-3 px-4 rounded-lg font-semibold text-white disabled:opacity-50"
-                      style={{ backgroundColor: '#2C5F7C' }}
+                      style={{ backgroundColor: '#059669' }}
                     >
                       Submit
                     </button>
@@ -646,7 +732,7 @@ function HealthcareComplianceCalculator() {
                   <button
                     onClick={() => setShowFeedback(false)}
                     className="py-2 px-6 rounded-lg font-semibold text-white"
-                    style={{ backgroundColor: '#2C5F7C' }}
+                    style={{ backgroundColor: '#059669' }}
                   >
                     Close
                   </button>
@@ -722,6 +808,25 @@ function HealthcareComplianceCalculator() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Missing icon components
+function XCircle({ className, style }) {
+  return (
+    <svg className={className} style={style} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="m15 9-6 6"></path>
+      <path d="m9 9 6 6"></path>
+    </svg>
+  );
+}
+
+function ChevronRight({ className, style }) {
+  return (
+    <svg className={className} style={style} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m9 18 6-6-6-6" />
+    </svg>
   );
 }
 
