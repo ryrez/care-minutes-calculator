@@ -286,7 +286,7 @@ function LandingPage({ onNavigateToCalculator }) {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Peace of Mind</h4>
-                      <p className="text-gray-600 text-sm">Sleep better knowing your compliance status is monitored 24/7</p>
+                      <p className="text-gray-600 text-sm">Confidence in your compliance status with clear, actionable insights</p>
                     </div>
                   </div>
                 </div>
