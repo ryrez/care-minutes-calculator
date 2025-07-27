@@ -77,7 +77,7 @@ function LandingPage({ onNavigateToCalculator }) {
                 <p className="text-sm text-gray-500 mt-2">Source: Government Q2 2024-25 Report</p>
               </div>
               <div className="bg-white p-6 rounded-xl shadow-sm">
-                <div className="text-3xl font-bold text-red-600 mb-2">12 Months</div>
+                <div className="text-3xl font-bold text-red-600 mb-2">2026</div>
                 <p className="text-gray-700">until funding cuts begin for non-compliant facilities</p>
                 <p className="text-sm text-gray-500 mt-2">Starting April 2026</p>
               </div>
