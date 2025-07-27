@@ -12,8 +12,10 @@ function CalculatorComponent() {
   const [facilityName, setFacilityName] = useState('');
   const [phone, setPhone] = useState('');
   const [biggestPainPoint, setBiggestPainPoint] = useState('');
+  const [additionalFeedback, setAdditionalFeedback] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [showEmailForm, setShowEmailForm] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const targetMinutes = 215;
   const rnTargetMinutes = 44;
@@ -108,6 +110,7 @@ function CalculatorComponent() {
         formData.append('facility', facilityName);
         formData.append('phone', phone || 'Not provided');
         formData.append('pain_point', biggestPainPoint);
+        formData.append('additional_feedback', additionalFeedback || 'Not provided');
         formData.append('staffing_data', `${results.bedCount} beds, ${results.residentCount} residents, ${results.totalWeeklyHours} total weekly hours`);
         formData.append('compliance_results', `${results.careMinutesPerResident} total mins/resident (${results.totalCompliancePercentage}%), ${results.rnMinutesPerResident} RN mins/resident (${results.rnCompliancePercentage}%)`);
         formData.append('penalty_risk', `$${results.annualPenalty.toLocaleString()} annual risk`);
@@ -118,13 +121,14 @@ function CalculatorComponent() {
         });
 
         if (response.ok) {
-          alert(`Thanks ${contactName}! We've added you to our priority list and will notify you at ${email} when our compliance solution launches.`);
+          setIsSubmitted(true);
+          // Clear form after submission
           setEmail('');
           setContactName('');
           setFacilityName('');
           setPhone('');
           setBiggestPainPoint('');
-          setShowEmailForm(false);
+          setAdditionalFeedback('');
         } else {
           alert('Thank you for your interest! Please email us directly at ryanrezel@gmail.com');
         }
@@ -440,7 +444,7 @@ function CalculatorComponent() {
                 
                 <div className="p-4 bg-red-100 rounded-lg">
                   <p className="text-sm text-red-900">
-                    <strong>Risk:</strong> From October 2025, non-compliant metropolitan facilities may face funding reductions of up to $31.92 per bed per day.
+                    <strong>Risk:</strong> From April 2026, non-compliant metropolitan facilities may face funding reductions of up to $31.92 per bed per day.
                   </p>
                 </div>
               </div>
@@ -459,71 +463,107 @@ function CalculatorComponent() {
             {/* Lead Capture */}
             <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 sm:p-8 shadow-sm text-center">
               <h3 className="text-lg sm:text-xl font-bold text-blue-900 mb-3">
-                Want Real-Time Compliance Tracking?
+                Help Us Build What You Need Most
               </h3>
               <p className="text-blue-800 mb-6 max-w-2xl mx-auto">
-                We're developing a comprehensive solution that automates this calculation with your roster data.
+                Our development roadmap is driven by user feedback. Tell us your biggest challenge so we can prioritize features that matter to you.
               </p>
               
-              {!showEmailForm ? (
-                <button
-                  onClick={() => setShowEmailForm(true)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-semibold transition-colors duration-200 flex items-center gap-3 mx-auto"
-                >
-                  <Phone className="w-5 h-5" />
-                  Get Early Access
-                </button>
-              ) : (
-                <div className="max-w-lg mx-auto space-y-4">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email address"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  />
-                  <input
-                    type="text"
-                    value={contactName}
-                    onChange={(e) => setContactName(e.target.value)}
-                    placeholder="Your name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  />
-                  <input
-                    type="text"
-                    value={facilityName}
-                    onChange={(e) => setFacilityName(e.target.value)}
-                    placeholder="Facility name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  />
-                  <select
-                    value={biggestPainPoint}
-                    onChange={(e) => setBiggestPainPoint(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white"
-                  >
-                    <option value="">What's your biggest care minutes challenge?</option>
-                    <option value="roster-to-compliance">Converting weekly rosters into compliance metrics</option>
-                    <option value="real-time-tracking">Tracking compliance in real-time, not just quarterly</option>
-                    <option value="manual-calculations">Manual spreadsheet calculations taking too much time</option>
-                    <option value="gpms-qfr-reporting">Streamlining QFR/GPMS reporting processes</option>
-                    <option value="audit-preparation">Preparing evidence for ACQSC audits</option>
-                    <option value="penalty-avoidance">Avoiding compliance penalties and funding cuts</option>
-                    <option value="staff-planning">Planning how many staff hours needed for compliance</option>
-                  </select>
-                  <input
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Phone number (optional)"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  />
+              {!isSubmitted ? (
+                !showEmailForm ? (
                   <button
-                    onClick={handleSubmitLead}
-                    disabled={!email || !contactName || !facilityName || !biggestPainPoint}
-                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-200 disabled:cursor-not-allowed"
+                    onClick={() => setShowEmailForm(true)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-semibold transition-colors duration-200 flex items-center gap-3 mx-auto"
                   >
-                    Join Priority List
+                    <Phone className="w-5 h-5" />
+                    Share Feedback & Get Updates
                   </button>
+                ) : (
+                  <div className="max-w-lg mx-auto space-y-4">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Your email address *"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    />
+                    <input
+                      type="text"
+                      value={contactName}
+                      onChange={(e) => setContactName(e.target.value)}
+                      placeholder="Your name *"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    />
+                    <input
+                      type="text"
+                      value={facilityName}
+                      onChange={(e) => setFacilityName(e.target.value)}
+                      placeholder="Facility name *"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    />
+                    <select
+                      value={biggestPainPoint}
+                      onChange={(e) => setBiggestPainPoint(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white"
+                    >
+                      <option value="">What's your biggest care minutes challenge? *</option>
+                      <option value="roster-to-compliance">Converting weekly rosters into compliance metrics</option>
+                      <option value="real-time-tracking">Tracking compliance in real-time, not just quarterly</option>
+                      <option value="manual-calculations">Manual spreadsheet calculations taking too much time</option>
+                      <option value="gpms-qfr-reporting">Streamlining QFR/GPMS reporting processes</option>
+                      <option value="audit-preparation">Preparing evidence for ACQSC audits</option>
+                      <option value="penalty-avoidance">Avoiding compliance penalties and funding cuts</option>
+                      <option value="staff-planning">Planning how many staff hours needed for compliance</option>
+                      <option value="other">Other (please tell us what you need most)</option>
+                    </select>
+                    
+                    {/* Additional Feedback Field */}
+                    <div className="text-left">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Any specific challenges or features you'd like to see? (Optional)
+                      </label>
+                      <textarea
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Tell us about your specific situation, challenges, or what would help you most..."
+                        rows="3"
+                        value={additionalFeedback}
+                        onChange={(e) => setAdditionalFeedback(e.target.value)}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Your feedback helps us prioritize which features to build next
+                      </p>
+                    </div>
+                    
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="Phone number (optional)"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    />
+                    <button
+                      onClick={handleSubmitLead}
+                      disabled={!email || !contactName || !facilityName || !biggestPainPoint}
+                      className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-200 disabled:cursor-not-allowed"
+                    >
+                      Share Feedback & Get Updates
+                    </button>
+                    <p className="text-xs text-blue-700">
+                      * Required fields. We'll use this to understand your needs and keep you updated on relevant features.
+                    </p>
+                  </div>
+                )
+              ) : (
+                <div className="max-w-md mx-auto">
+                  <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
+                  <h4 className="text-xl font-semibold text-green-900 mb-2">Thank You!</h4>
+                  <p className="text-green-800 mb-4">
+                    Your feedback has been received. We'll prioritize features based on demand and keep you updated on developments.
+                  </p>
+                  <div className="flex items-center justify-center gap-2 text-sm text-green-700">
+                    <Phone className="w-4 h-4" />
+                    <span>We may reach out to learn more about your specific needs</span>
+                  </div>
                 </div>
               )}
             </div>
@@ -558,4 +598,3 @@ function CalculatorComponent() {
 }
 
 export default CalculatorComponent;
-
