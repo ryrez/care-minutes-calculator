@@ -153,80 +153,94 @@ function CalculatorComponent() {
 
         {/* Calculator Inputs */}
         <div className="bg-gray-50 rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8 mb-8">
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-8">
-            {/* Facility Info */}
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900">Facility Information</h3>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Number of Operational Beds
-                </label>
-                <input
-                  type="number"
-                  value={beds}
-                  onChange={(e) => setBeds(e.target.value)}
-                  placeholder="e.g. 50"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500"
-                />
+          {/* Input Container with Consistent Layout */}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 mb-8">
+              {/* Facility Information Section */}
+              <div className="space-y-6">
+                <div className="pb-3 border-b border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900">Facility Information</h3>
+                </div>
+                
+                <div className="space-y-5">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Number of Operational Beds
+                    </label>
+                    <input
+                      type="number"
+                      value={beds}
+                      onChange={(e) => setBeds(e.target.value)}
+                      placeholder="e.g. 50"
+                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Average Daily Residents <span className="text-gray-500 font-normal">(optional)</span>
+                    </label>
+                    <input
+                      type="number"
+                      value={residents}
+                      onChange={(e) => setResidents(e.target.value)}
+                      placeholder={beds ? `Defaults to ${beds} if not specified` : "e.g. 47"}
+                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                    />
+                  </div>
+                </div>
               </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Average Daily Residents <span className="text-gray-500 font-normal">(optional)</span>
-                </label>
-                <input
-                  type="number"
-                  value={residents}
-                  onChange={(e) => setResidents(e.target.value)}
-                  placeholder={beds ? `Defaults to ${beds} if not specified` : "e.g. 47"}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500"
-                />
-              </div>
-            </div>
 
-            {/* Weekly Staff Hours */}
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900">Weekly Staff Hours (Worked Hours Only)</h3>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Registered Nurse (RN) Hours/Week
-                </label>
-                <input
-                  type="number"
-                  step="0.5"
-                  value={rnHours}
-                  onChange={(e) => setRnHours(e.target.value)}
-                  placeholder="e.g. 168"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Enrolled Nurse (EN) Hours/Week
-                </label>
-                <input
-                  type="number"
-                  step="0.5"
-                  value={enHours}
-                  onChange={(e) => setEnHours(e.target.value)}
-                  placeholder="e.g. 84"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Personal Care Worker (PCW/AIN) Hours/Week
-                </label>
-                <input
-                  type="number"
-                  step="0.5"
-                  value={pcwHours}
-                  onChange={(e) => setPcwHours(e.target.value)}
-                  placeholder="e.g. 420"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500"
-                />
+              {/* Weekly Staff Hours Section */}
+              <div className="space-y-6">
+                <div className="pb-3 border-b border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900">Weekly Staff Hours</h3>
+                  <p className="text-sm text-gray-600 mt-1">Worked hours only (excluding leave/training)</p>
+                </div>
+                
+                <div className="space-y-5">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Registered Nurse (RN) Hours/Week
+                    </label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={rnHours}
+                      onChange={(e) => setRnHours(e.target.value)}
+                      placeholder="e.g. 168"
+                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Enrolled Nurse (EN) Hours/Week
+                    </label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={enHours}
+                      onChange={(e) => setEnHours(e.target.value)}
+                      placeholder="e.g. 84"
+                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Personal Care Worker (PCW/AIN) Hours/Week
+                    </label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={pcwHours}
+                      onChange={(e) => setPcwHours(e.target.value)}
+                      placeholder="e.g. 420"
+                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -597,4 +611,4 @@ function CalculatorComponent() {
   );
 }
 
-export default CalculatorComponent; 
+export default CalculatorComponent;
