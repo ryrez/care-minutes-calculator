@@ -50,18 +50,31 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#2C5F7C' }}>
-                <Stethoscope className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 flex items-center justify-center" style={{ position: 'relative' }}>
+                <div style={{
+                  width: '48px',
+                  height: '48px',
+                  background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  position: 'relative'
+                }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                  </svg>
+                </div>
               </div>
               <div>
-                <span className="text-2xl font-bold" style={{ color: '#1F2937' }}>ComplianceIQ</span>
+                <span className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</span>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-sm px-2 py-1 rounded-full" style={{ 
                     backgroundColor: '#F0FDF4', 
                     color: '#166534',
                     border: '1px solid #BBF7D0'
                   }}>
-                    Clinical Planning Tool
+                    Care more. Calculate less.
                   </span>
                 </div>
               </div>
@@ -84,8 +97,21 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
             <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#2C5F7C20' }}>
-                <Activity className="w-10 h-10" style={{ color: '#2C5F7C' }} />
+              <div className="w-20 h-20 flex items-center justify-center" style={{ position: 'relative' }}>
+                <div style={{
+                  width: '80px',
+                  height: '80px',
+                  background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  position: 'relative'
+                }}>
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                  </svg>
+                </div>
               </div>
             </div>
             
@@ -93,17 +119,16 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
               Care Minutes Compliance Calculator
             </h1>
             <p className="text-xl sm:text-2xl mb-8 max-w-4xl mx-auto" style={{ color: '#374151', lineHeight: '1.5' }}>
-              Professional planning tool for Australian aged care facility managers. 
-              Convert your weekly staffing data into compliance metrics in under 30 seconds.
+              Aged care facilities are under attack by bureaucratic complexity. Managers spend sleepless nights wondering if they're compliant. We believe facility managers should focus on caring for residents, not calculating penalties. That's why we built ComplianceIQ.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <button 
                 onClick={onNavigateToCalculator}
                 className="px-8 py-4 rounded-lg text-lg font-semibold text-white transition-colors shadow-lg"
-                style={{ backgroundColor: '#2C5F7C' }}
+                style={{ backgroundColor: '#059669' }}
               >
-                Access Compliance Calculator
+                Start Your Compliance Check
               </button>
             </div>
             
@@ -214,9 +239,9 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
               <button 
                 onClick={onNavigateToCalculator}
                 className="px-8 py-3 rounded-lg font-semibold text-white transition-colors shadow-lg"
-                style={{ backgroundColor: '#EF4444' }}
+                style={{ backgroundColor: '#059669' }}
               >
-                Calculate Your Specific Risk
+                Check Your Facility Now
               </button>
             </div>
             
@@ -232,8 +257,18 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#2C5F7C' }}>
-              <Activity className="w-10 h-10 text-white" />
+            <div style={{
+              width: '80px',
+              height: '80px',
+              background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+              </svg>
             </div>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold mb-6" style={{ color: '#1F2937' }}>
@@ -245,9 +280,9 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
           <button 
             onClick={onNavigateToCalculator}
             className="px-8 py-4 rounded-lg text-lg font-semibold text-white transition-colors shadow-lg"
-            style={{ backgroundColor: '#2C5F7C' }}
+            style={{ backgroundColor: '#059669' }}
           >
-            Access Compliance Calculator
+            Start Your Compliance Check
           </button>
         </div>
       </section>
@@ -255,13 +290,24 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
       {/* Professional Footer */}
       <footer className="bg-white border-t-2" style={{ borderColor: '#E5E7EB' }}>
         <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="text-center mb-8">
+          <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#2C5F7C' }}>
-                <Stethoscope className="w-5 h-5 text-white" />
+              <div style={{
+                width: '40px',
+                height: '40px',
+                background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                </svg>
               </div>
-              <span className="text-2xl font-bold" style={{ color: '#1F2937' }}>ComplianceIQ</span>
+              <span className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</span>
             </div>
+            <p className="text-base mb-4" style={{ color: '#6B7280' }}>Care more. Calculate less.</p>
           </div>
           
           {/* Clinical Disclaimers */}
@@ -427,24 +473,36 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
             <div className="flex items-center gap-4">
               <button 
                 onClick={onNavigateToLanding}
-                className="w-12 h-12 rounded-lg flex items-center justify-center transition-colors hover:bg-gray-100"
-                style={{ backgroundColor: '#2C5F7C' }}
+                className="flex items-center justify-center transition-colors hover:bg-gray-100 rounded-lg p-2"
+                style={{ position: 'relative' }}
               >
-                <Stethoscope className="w-6 h-6 text-white" />
+                <div style={{
+                  width: '48px',
+                  height: '48px',
+                  background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                  </svg>
+                </div>
               </button>
               <div>
                 <h1 className="text-2xl font-bold" style={{ color: '#1F2937' }}>
                   Care Minutes Compliance Calculator
                 </h1>
                 <p className="text-base" style={{ color: '#6B7280' }}>
-                  Planning tool for Australian aged care facilities
+                  Care more. Calculate less.
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <span className="px-3 py-1 text-sm font-medium rounded-full border" 
                     style={{ backgroundColor: '#F0FDF4', color: '#166534', borderColor: '#BBF7D0' }}>
-                Planning Tool Only
+                Care more. Calculate less.
               </span>
             </div>
           </div>
@@ -463,7 +521,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                       ? 'text-white border-transparent'
                       : 'border-gray-300 text-gray-500'
                   }`} style={{
-                    backgroundColor: currentStep >= step.number || showResults ? '#2C5F7C' : 'transparent'
+                    backgroundColor: currentStep >= step.number || showResults ? '#059669' : 'transparent'
                   }}>
                     {step.number}
                   </div>
@@ -475,7 +533,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                 {index < steps.length - 1 && (
                   <div className="flex-1 mx-4">
                     <div className="h-0.5" style={{
-                      backgroundColor: currentStep > step.number || showResults ? '#2C5F7C' : '#E5E7EB'
+                      backgroundColor: currentStep > step.number || showResults ? '#059669' : '#E5E7EB'
                     }}></div>
                   </div>
                 )}
@@ -558,6 +616,47 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                 </div>
               </div>
 
+              {/* Action Recommendations */}
+              {!results.isCompliant && (
+                <div className="p-6 rounded-lg border-2 mb-8" style={{
+                  backgroundColor: '#FEF2F2',
+                  borderColor: '#EF4444'
+                }}>
+                  <div className="flex items-start gap-4">
+                    <AlertTriangle className="w-6 h-6 mt-1" style={{ color: '#EF4444' }} />
+                    <div>
+                      <h3 className="font-bold text-lg mb-2" style={{ color: '#DC2626' }}>
+                        Action Required
+                      </h3>
+                      <p className="mb-4" style={{ color: '#991B1B' }}>
+                        Your facility may face funding reductions from April 2026. Immediate action is recommended.
+                      </p>
+                      <div className="space-y-2">
+                        {results.totalShortfall > 0 && (
+                          <p className="text-sm" style={{ color: '#991B1B' }}>
+                            • <strong>Increase total care by {Math.ceil((results.totalShortfall * results.residentCount * 7) / 60)} hours per week</strong> to meet 215 minutes per resident per day
+                          </p>
+                        )}
+                        {results.rnShortfall > 0 && (
+                          <p className="text-sm" style={{ color: '#991B1B' }}>
+                            • <strong>Increase RN care by {Math.ceil((results.rnShortfall * results.residentCount * 7) / 60)} hours per week</strong> to meet 44 minutes per resident per day
+                          </p>
+                        )}
+                        <p className="text-sm mt-3 pt-3 border-t" style={{ color: '#7F1D1D', borderColor: '#FCA5A5' }}>
+                          <strong>Potential annual penalty:</strong> Up to ${(results.bedCount * 31.92 * 365).toLocaleString()} for a {results.bedCount}-bed facility
+                        </p>
+                      </div>
+                      <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: '#FEFCE8', border: '1px solid #FDE047' }}>
+                        <p className="text-xs" style={{ color: '#A16207' }}>
+                          <strong>Disclaimer:</strong> These are planning estimates only. Actual compliance requirements may vary. 
+                          Consult your compliance officer for official guidance and specific implementation strategies.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
@@ -565,8 +664,8 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                   className="flex-1 py-3 px-6 rounded-lg font-semibold transition-colors border"
                   style={{
                     backgroundColor: 'white',
-                    borderColor: '#2C5F7C',
-                    color: '#2C5F7C'
+                    borderColor: '#059669',
+                    color: '#059669'
                   }}
                 >
                   Calculate Again
@@ -608,7 +707,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                       className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                       style={{
                         backgroundColor: '#F9FAFB',
-                        borderColor: beds ? '#2C5F7C' : '#D1D5DB',
+                        borderColor: beds ? '#059669' : '#D1D5DB',
                         color: '#1F2937'
                       }}
                     />
@@ -644,7 +743,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                       className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                       style={{
                         backgroundColor: '#F9FAFB',
-                        borderColor: residents ? '#2C5F7C' : '#D1D5DB',
+                        borderColor: residents ? '#059669' : '#D1D5DB',
                         color: '#1F2937'
                       }}
                     />
@@ -682,7 +781,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                         className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                         style={{
                           backgroundColor: '#F9FAFB',
-                          borderColor: rnHours ? '#2C5F7C' : '#D1D5DB',
+                          borderColor: rnHours ? '#059669' : '#D1D5DB',
                           color: '#1F2937'
                         }}
                       />
@@ -701,7 +800,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                         className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                         style={{
                           backgroundColor: '#F9FAFB',
-                          borderColor: enHours ? '#2C5F7C' : '#D1D5DB',
+                          borderColor: enHours ? '#059669' : '#D1D5DB',
                           color: '#1F2937'
                         }}
                       />
@@ -720,7 +819,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                         className="w-full h-12 px-4 text-base rounded-lg border-2 transition-colors focus:outline-none"
                         style={{
                           backgroundColor: '#F9FAFB',
-                          borderColor: pcwHours ? '#2C5F7C' : '#D1D5DB',
+                          borderColor: pcwHours ? '#059669' : '#D1D5DB',
                           color: '#1F2937'
                         }}
                       />
@@ -771,7 +870,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                     onClick={handleNext}
                     disabled={!canProceed() || isCalculating}
                     className="px-6 py-3 rounded-lg font-semibold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                    style={{ backgroundColor: '#2C5F7C' }}
+                    style={{ backgroundColor: '#059669' }}
                   >
                     {isCalculating ? (
                       <>
@@ -872,7 +971,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                       onClick={() => setIsSubmitted(true)}
                       disabled={!email || !contactName || !facilityName || !biggestPainPoint}
                       className="flex-1 py-3 px-4 rounded-lg font-semibold text-white disabled:opacity-50"
-                      style={{ backgroundColor: '#2C5F7C' }}
+                      style={{ backgroundColor: '#059669' }}
                     >
                       Submit
                     </button>
@@ -890,7 +989,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                   <button
                     onClick={() => setShowFeedback(false)}
                     className="py-2 px-6 rounded-lg font-semibold text-white"
-                    style={{ backgroundColor: '#2C5F7C' }}
+                                          style={{ backgroundColor: '#059669' }}
                   >
                     Close
                   </button>
@@ -1013,4 +1112,4 @@ function Info({ className, style }) {
   );
 }
 
-export default App; 
+export default App;
