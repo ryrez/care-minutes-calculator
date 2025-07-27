@@ -82,7 +82,7 @@ function LandingPage({ onNavigateToCalculator }) {
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                 </div>
-                <div className="text-xs text-gray-500 font-medium">Live Dashboard</div>
+                <div className="text-xs text-gray-500 font-medium">Planned Features</div>
               </div>
               
               {/* Compliance Dial */}
@@ -122,7 +122,7 @@ function LandingPage({ onNavigateToCalculator }) {
                 </div>
                 <div className="bg-blue-50 p-4 rounded-xl text-center">
                   <div className="text-sm font-medium text-blue-800">GPMS Ready</div>
-                  <div className="text-lg font-light text-blue-600">Q1 2025</div>
+                  <div className="text-lg font-light text-blue-600">Q1 2026</div>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-xl text-center">
                   <div className="text-sm font-medium text-gray-800">Next Alert</div>
