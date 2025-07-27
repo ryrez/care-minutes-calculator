@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertTriangle, CheckCircle, XCircle, Calculator, Phone, Info, ChevronDown, TrendingUp, Users, Clock, Target, HelpCircle, Bell, BellOff } from 'lucide-react';
+import { AlertTriangle, CheckCircle, XCircle, Calculator, Phone, Info, ChevronDown, Users, Clock, Target, TrendingUp, Shield, FileText, Brain, Activity } from 'lucide-react';
 
 function CalculatorComponent() {
   const [beds, setBeds] = useState('');
@@ -17,9 +17,6 @@ function CalculatorComponent() {
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isCalculating, setIsCalculating] = useState(false);
-  const [activeTooltip, setActiveTooltip] = useState(null);
-  const [userRole, setUserRole] = useState('manager'); // manager, nurse, admin
-  const [alertsEnabled, setAlertsEnabled] = useState(true);
 
   const targetMinutes = 215;
   const rnTargetMinutes = 44;
@@ -81,59 +78,13 @@ function CalculatorComponent() {
     }
   };
 
-  const getComplianceStatus = () => {
-    if (results.isCompliant) return { level: 'success', color: 'emerald', message: 'Fully Compliant', icon: CheckCircle };
-    if (results.totalCompliancePercentage >= 90 && results.rnCompliancePercentage >= 90) 
-      return { level: 'warning', color: 'amber', message: 'Almost Compliant', icon: AlertTriangle };
-    return { level: 'critical', color: 'red', message: 'Non-Compliant Risk', icon: XCircle };
+  const getRiskLevel = () => {
+    if (results.isCompliant) return { level: 'LOW', color: 'emerald', icon: Shield };
+    if (results.totalCompliancePercentage >= 90) return { level: 'MEDIUM', color: 'amber', icon: AlertTriangle };
+    return { level: 'HIGH', color: 'red', icon: XCircle };
   };
 
-  const status = getComplianceStatus();
-
-  const Tooltip = ({ content, children, id }) => (
-    <div className="relative inline-block">
-      <button
-        className="text-slate-400 hover:text-slate-600 transition-colors"
-        onMouseEnter={() => setActiveTooltip(id)}
-        onMouseLeave={() => setActiveTooltip(null)}
-        onClick={() => setActiveTooltip(activeTooltip === id ? null : id)}
-      >
-        {children}
-      </button>
-      {activeTooltip === id && (
-        <div className="absolute z-10 w-64 p-3 text-sm bg-slate-900 text-white rounded-lg shadow-lg -top-2 left-6 transform">
-          <div className="absolute -left-1 top-3 w-2 h-2 bg-slate-900 rotate-45"></div>
-          {content}
-        </div>
-      )}
-    </div>
-  );
-
-  const DecisionSupportAlert = ({ type, message, action }) => {
-    if (!alertsEnabled) return null;
-    
-    const alertStyles = {
-      info: 'bg-blue-50 border-blue-200 text-blue-800',
-      warning: 'bg-amber-50 border-amber-200 text-amber-800',
-      success: 'bg-emerald-50 border-emerald-200 text-emerald-800'
-    };
-
-    return (
-      <div className={`border rounded-lg p-4 mb-4 ${alertStyles[type]}`}>
-        <div className="flex items-start gap-3">
-          <Info className="w-5 h-5 mt-0.5 flex-shrink-0" />
-          <div className="flex-1">
-            <p className="text-sm font-medium">{message}</p>
-            {action && (
-              <button className="text-xs underline mt-1 hover:no-underline">
-                {action}
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  };
+  const risk = getRiskLevel();
 
   const handleSubmitLead = async () => {
     if (email && contactName && facilityName && biggestPainPoint) {
@@ -175,501 +126,492 @@ function CalculatorComponent() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Role-based Header */}
-      <div className="bg-white border-b border-slate-200 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <h1 className="text-xl font-semibold text-slate-900">Care Minutes Calculator</h1>
-              <span className="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                Planning Tool
-              </span>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50/30">
+      {/* Header */}
+      <div className="bg-white border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl lg:text-3xl font-bold text-slate-900">
+                Care Minutes Analytics
+              </h1>
+              <p className="text-slate-600 mt-1">Real-time compliance monitoring for aged care facilities</p>
             </div>
-            
             <div className="flex items-center gap-3">
-              {/* Alert Toggle */}
-              <button
-                onClick={() => setAlertsEnabled(!alertsEnabled)}
-                className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
-              >
-                {alertsEnabled ? (
-                  <Bell className="w-5 h-5 text-slate-600" />
-                ) : (
-                  <BellOff className="w-5 h-5 text-slate-400" />
-                )}
-              </button>
-              
-              {/* Role Selector */}
-              <select
-                value={userRole}
-                onChange={(e) => setUserRole(e.target.value)}
-                className="text-sm border border-slate-300 rounded-lg px-3 py-1.5 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="manager">Facility Manager</option>
-                <option value="nurse">Nursing Staff</option>
-                <option value="admin">Administrator</option>
-              </select>
+              <div className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-200">
+                Planning Tool
+              </div>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-slate-600">Live Calculator</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
-        {/* Mobile-Friendly Dashboard Cards */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Dashboard Overview Cards - Inspired by Health Catalyst */}
         {showResults && (
           <div className="mb-8">
-            {/* Primary Status Card - Mobile First */}
-            <div className={`p-6 rounded-xl border-2 shadow-sm mb-6 bg-${status.color}-50 border-${status.color}-200`}>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <status.icon className={`w-8 h-8 text-${status.color}-600 flex-shrink-0`} />
-                <div className="flex-1 min-w-0">
-                  <h2 className={`text-2xl sm:text-3xl font-bold text-${status.color}-900 mb-2`}>
-                    {status.message}
-                  </h2>
-                  <div className="space-y-1">
-                    <p className={`text-${status.color}-800`}>
-                      <span className="font-medium">Total:</span> {results.careMinutesPerResident} min/day 
-                      <span className="ml-2 text-sm">({results.totalCompliancePercentage}% of target)</span>
-                    </p>
-                    <p className={`text-${status.color}-800`}>
-                      <span className="font-medium">RN:</span> {results.rnMinutesPerResident} min/day 
-                      <span className="ml-2 text-sm">({results.rnCompliancePercentage}% of target)</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Self-Service Analytics Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <Users className="w-5 h-5 text-blue-600" />
-                  <span className="text-sm font-medium text-slate-700">Residents</span>
-                </div>
-                <div className="text-2xl font-bold text-slate-900">{results.residentCount}</div>
-                <div className="text-xs text-slate-500 mt-1">Current occupancy</div>
-              </div>
-
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <Clock className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium text-slate-700">Total Hours</span>
-                </div>
-                <div className="text-2xl font-bold text-slate-900">{results.totalWeeklyHours}</div>
-                <div className="text-xs text-slate-500 mt-1">Per week</div>
-              </div>
-
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <Target className="w-5 h-5 text-purple-600" />
-                  <span className="text-sm font-medium text-slate-700">Care Minutes</span>
-                </div>
-                <div className="text-2xl font-bold text-slate-900">{results.careMinutesPerResident}</div>
-                <div className="text-xs text-slate-500 mt-1">Per resident/day</div>
-              </div>
-
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <TrendingUp className={`w-5 h-5 ${results.isCompliant ? 'text-emerald-600' : 'text-red-600'}`} />
-                  <span className="text-sm font-medium text-slate-700">Status</span>
-                </div>
-                <div className={`text-2xl font-bold ${results.isCompliant ? 'text-emerald-600' : 'text-red-600'}`}>
-                  {results.totalCompliancePercentage}%
-                </div>
-                <div className="text-xs text-slate-500 mt-1">Compliance rate</div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Embedded Decision Support - Context-aware alerts */}
-        {beds && !showResults && (
-          <DecisionSupportAlert
-            type="info"
-            message={`For ${beds} beds, you'll typically need 400-500 total care hours per week to meet compliance targets.`}
-            action="See calculation methodology"
-          />
-        )}
-
-        {showResults && !results.isCompliant && (
-          <DecisionSupportAlert
-            type="warning"
-            message={`You need ${Math.ceil((results.totalShortfall * results.residentCount * 7) / 60)} more weekly hours to reach compliance. Consider increasing ${results.rnShortfall > 0 ? 'RN' : 'total'} staffing.`}
-            action="View staffing recommendations"
-          />
-        )}
-
-        {/* Clean Visual Hierarchy - Input Form */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          {/* Simplified Header */}
-          <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-slate-900">Calculate Compliance</h3>
-              <Tooltip content="Enter your current staffing hours to check compliance with care minutes requirements" id="main-help">
-                <HelpCircle className="w-5 h-5" />
-              </Tooltip>
-            </div>
-          </div>
-
-          <div className="p-6">
-            {/* Facility Information */}
-            <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-1 h-6 bg-blue-500 rounded-full"></div>
-                <h4 className="font-medium text-slate-900">Facility Information</h4>
-              </div>
-              
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Operational Beds
-                    <Tooltip content="Total number of beds available for resident occupancy" id="beds-help">
-                      <HelpCircle className="w-4 h-4 ml-1 inline" />
-                    </Tooltip>
-                  </label>
-                  <input
-                    type="number"
-                    value={beds}
-                    onChange={(e) => setBeds(e.target.value)}
-                    placeholder="e.g. 50"
-                    className="w-full h-12 px-4 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-900 placeholder-slate-400"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Daily Residents
-                    <span className="ml-2 text-xs text-slate-500">(Optional)</span>
-                  </label>
-                  <input
-                    type="number"
-                    value={residents}
-                    onChange={(e) => setResidents(e.target.value)}
-                    placeholder={beds ? `Defaults to ${beds}` : "e.g. 47"}
-                    className="w-full h-12 px-4 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-900 placeholder-slate-400"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Staff Hours - Mobile Optimized */}
-            <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-1 h-6 bg-green-500 rounded-full"></div>
-                <h4 className="font-medium text-slate-900">Weekly Staff Hours</h4>
-                <Tooltip content="Enter worked hours only (excluding leave, training, admin time)" id="hours-help">
-                  <HelpCircle className="w-4 h-4" />
-                </Tooltip>
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Registered Nurse (RN)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.5"
-                    value={rnHours}
-                    onChange={(e) => setRnHours(e.target.value)}
-                    placeholder="e.g. 168"
-                    className="w-full h-12 px-4 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-900 placeholder-slate-400"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Enrolled Nurse (EN)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.5"
-                    value={enHours}
-                    onChange={(e) => setEnHours(e.target.value)}
-                    placeholder="e.g. 84"
-                    className="w-full h-12 px-4 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-900 placeholder-slate-400"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Personal Care Worker (PCW/AIN)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.5"
-                    value={pcwHours}
-                    onChange={(e) => setPcwHours(e.target.value)}
-                    placeholder="e.g. 420"
-                    className="w-full h-12 px-4 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-900 placeholder-slate-400"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Calculate Button - Mobile Optimized */}
-            <button
-              onClick={handleCalculate}
-              disabled={!beds || (!rnHours && !enHours && !pcwHours) || isCalculating}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 text-white py-4 px-6 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-3 disabled:cursor-not-allowed shadow-sm"
-            >
-              {isCalculating ? (
-                <>
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                  Calculating Compliance...
-                </>
-              ) : (
-                <>
-                  <Calculator className="w-5 h-5" />
-                  Check Compliance Status
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Self-Service Analytics - Detailed Results */}
-        {showResults && (
-          <div className="mt-8 space-y-6">
-            {/* Contextual Insights */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">Insights & Recommendations</h3>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <h4 className="font-medium text-slate-800">Current Performance</h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
-                      <span className="text-sm text-slate-600">Total Care Minutes</span>
-                      <span className="font-semibold">{results.careMinutesPerResident}/day</span>
+            <div className="grid lg:grid-cols-4 gap-6 mb-8">
+              {/* Primary Compliance KPI */}
+              <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-${risk.color}-100`}>
+                      <Target className={`w-6 h-6 text-${risk.color}-600`} />
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
-                      <span className="text-sm text-slate-600">RN Care Minutes</span>
-                      <span className="font-semibold">{results.rnMinutesPerResident}/day</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
-                      <span className="text-sm text-slate-600">Weekly Hours</span>
-                      <span className="font-semibold">{results.totalWeeklyHours}hrs</span>
+                    <div>
+                      <h3 className="font-semibold text-slate-900">Compliance Status</h3>
+                      <p className="text-sm text-slate-600">Current care minutes performance</p>
                     </div>
                   </div>
-                </div>
-
-                <div className="space-y-4">
-                  <h4 className="font-medium text-slate-800">Compliance Targets</h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                      <span className="text-sm text-blue-700">Total Target</span>
-                      <span className="font-semibold text-blue-900">215 min/day</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                      <span className="text-sm text-blue-700">RN Target</span>
-                      <span className="font-semibold text-blue-900">44 min/day</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                      <span className="text-sm text-blue-700">Compliance Rate</span>
-                      <span className={`font-semibold ${results.isCompliant ? 'text-emerald-600' : 'text-red-600'}`}>
-                        {results.totalCompliancePercentage}%
-                      </span>
-                    </div>
+                  <div className={`px-3 py-1 rounded-full text-xs font-bold bg-${risk.color}-100 text-${risk.color}-700`}>
+                    {risk.level} RISK
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Gap Analysis with Decision Support */}
-            {!results.isCompliant && (
-              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-                <h3 className="text-lg font-semibold text-red-900 mb-4">Gap Analysis & Action Items</h3>
                 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-medium text-red-800 mb-3">Staffing Shortfall</h4>
-                    {results.totalShortfall > 0 && (
-                      <div className="bg-white p-4 rounded-lg border border-red-200 mb-3">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm text-slate-600">Total Care Gap</span>
-                          <span className="font-semibold text-red-700">{results.totalShortfall} min/day</span>
-                        </div>
-                        <p className="text-xs text-slate-600">
-                          Need {Math.ceil((results.totalShortfall * results.residentCount * 7) / 60)} more weekly hours
-                        </p>
-                      </div>
-                    )}
-                    
-                    {results.rnShortfall > 0 && (
-                      <div className="bg-white p-4 rounded-lg border border-red-200">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm text-slate-600">RN Care Gap</span>
-                          <span className="font-semibold text-red-700">{results.rnShortfall} min/day</span>
-                        </div>
-                        <p className="text-xs text-slate-600">
-                          Need {Math.ceil((results.rnShortfall * results.residentCount * 7) / 60)} more RN hours weekly
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  <div>
-                    <h4 className="font-medium text-red-800 mb-3">Financial Risk</h4>
-                    <div className="space-y-3">
-                      <div className="bg-white p-4 rounded-lg border border-red-200">
-                        <div className="text-xl font-bold text-red-700">${Math.round(results.dailyPenalty).toLocaleString()}</div>
-                        <div className="text-xs text-slate-600">Daily penalty risk</div>
-                      </div>
-                      <div className="bg-white p-4 rounded-lg border border-red-200">
-                        <div className="text-xl font-bold text-red-700">${results.annualPenalty.toLocaleString()}</div>
-                        <div className="text-xs text-slate-600">Annual penalty risk</div>
-                      </div>
+                    <div className="text-3xl font-bold text-slate-900 mb-1">
+                      {results.totalCompliancePercentage}%
+                    </div>
+                    <div className="text-sm text-slate-600">Total Care Compliance</div>
+                    <div className="w-full bg-slate-200 rounded-full h-2 mt-2">
+                      <div 
+                        className={`h-2 rounded-full bg-${risk.color}-500`}
+                        style={{ width: `${Math.min(results.totalCompliancePercentage, 100)}%` }}
+                      ></div>
                     </div>
                   </div>
-                </div>
-              </div>
-            )}
-
-            {/* Success State */}
-            {results.isCompliant && (
-              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <CheckCircle className="w-6 h-6 text-emerald-600" />
-                  <h3 className="text-lg font-semibold text-emerald-900">Compliance Achieved!</h3>
-                </div>
-                <p className="text-emerald-800">
-                  Your facility meets both total care minutes (215) and RN care minutes (44) requirements. 
-                  Continue monitoring to maintain compliance.
-                </p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Feedback Section - Enhanced for Mobile */}
-        {showResults && (
-          <div className="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold text-blue-900 mb-2">
-                Help Shape Our Roadmap
-              </h3>
-              <p className="text-blue-800 text-sm">
-                Your feedback drives our development priorities
-              </p>
-            </div>
-            
-            {!isSubmitted ? (
-              !showEmailForm ? (
-                <div className="text-center">
-                  <button
-                    onClick={() => setShowEmailForm(true)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
-                  >
-                    <Phone className="w-4 h-4" />
-                    Share Your Feedback
-                  </button>
-                </div>
-              ) : (
-                <div className="max-w-md mx-auto space-y-4">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email address *"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  />
-                  <input
-                    type="text"
-                    value={contactName}
-                    onChange={(e) => setContactName(e.target.value)}
-                    placeholder="Your name *"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  />
-                  <input
-                    type="text"
-                    value={facilityName}
-                    onChange={(e) => setFacilityName(e.target.value)}
-                    placeholder="Facility name *"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  />
-                  <select
-                    value={biggestPainPoint}
-                    onChange={(e) => setBiggestPainPoint(e.target.value)}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white"
-                  >
-                    <option value="">What's your biggest care minutes challenge? *</option>
-                    <option value="roster-to-compliance">Converting weekly rosters into compliance metrics</option>
-                    <option value="real-time-tracking">Tracking compliance in real-time, not just quarterly</option>
-                    <option value="manual-calculations">Manual spreadsheet calculations taking too much time</option>
-                    <option value="gpms-qfr-reporting">Streamlining QFR/GPMS reporting processes</option>
-                    <option value="audit-preparation">Preparing evidence for ACQSC audits</option>
-                    <option value="penalty-avoidance">Avoiding compliance penalties and funding cuts</option>
-                    <option value="staff-planning">Planning how many staff hours needed for compliance</option>
-                    <option value="other">Other (please tell us what you need most)</option>
-                  </select>
                   
-                  <div className="text-left">
+                  <div>
+                    <div className="text-3xl font-bold text-slate-900 mb-1">
+                      {results.rnCompliancePercentage}%
+                    </div>
+                    <div className="text-sm text-slate-600">RN Care Compliance</div>
+                    <div className="w-full bg-slate-200 rounded-full h-2 mt-2">
+                      <div 
+                        className={`h-2 rounded-full bg-${results.isRnCompliant ? 'emerald' : 'red'}-500`}
+                        style={{ width: `${Math.min(results.rnCompliancePercentage, 100)}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Metrics - Inspired by Power BI tiles */}
+              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-slate-900">Care Minutes</h4>
+                    <p className="text-xs text-slate-600">Per resident/day</p>
+                  </div>
+                </div>
+                <div className="text-2xl font-bold text-slate-900 mb-1">
+                  {results.careMinutesPerResident}
+                </div>
+                <div className="text-sm text-slate-600">
+                  Target: 215 minutes
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-slate-900">Workforce</h4>
+                    <p className="text-xs text-slate-600">Total weekly hours</p>
+                  </div>
+                </div>
+                <div className="text-2xl font-bold text-slate-900 mb-1">
+                  {results.totalWeeklyHours}
+                </div>
+                <div className="text-sm text-slate-600">
+                  {results.residentCount} residents
+                </div>
+              </div>
+            </div>
+
+            {/* Risk Assessment - Inspired by Jvion's empathy-focused design */}
+            {!results.isCompliant && (
+              <div className="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-xl p-6 mb-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+                    <AlertTriangle className="w-6 h-6 text-red-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-red-900 mb-2">Compliance Risk Detected</h3>
+                    <p className="text-red-800 mb-4">Your facility may face funding reductions starting April 2026. Take action now to avoid penalties.</p>
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="bg-white rounded-lg p-4 border border-red-200">
+                        <div className="text-2xl font-bold text-red-700 mb-1">
+                          ${results.annualPenalty.toLocaleString()}
+                        </div>
+                        <div className="text-sm text-slate-600">Annual funding risk</div>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg p-4 border border-red-200">
+                        <div className="text-2xl font-bold text-red-700 mb-1">
+                          {Math.ceil((results.totalShortfall * results.residentCount * 7) / 60)}
+                        </div>
+                        <div className="text-sm text-slate-600">Additional hours needed/week</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Main Input Dashboard - Inspired by Tableau's drag-and-drop design */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 mb-8">
+          {/* Dashboard Header */}
+          <div className="border-b border-slate-200 p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                  <Calculator className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-semibold text-slate-900">Compliance Calculator</h2>
+                  <p className="text-sm text-slate-600">Enter your facility data to assess compliance status</p>
+                </div>
+              </div>
+              
+              {/* Smart Recommendation - Inspired by Qlik Sense */}
+              <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg border border-blue-200">
+                <Brain className="w-4 h-4 text-blue-600" />
+                <span className="text-sm font-medium text-blue-900">Smart Analysis</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Input Grid - Inspired by Microsoft Power BI's tile system */}
+          <div className="p-6">
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Facility Configuration Panel */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
+                  <div className="w-6 h-6 rounded bg-blue-500 flex items-center justify-center">
+                    <Users className="w-4 h-4 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-slate-900">Facility Configuration</h3>
+                </div>
+                
+                <div className="space-y-5">
+                  <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Additional feedback (Optional)
+                      Operational Beds
                     </label>
-                    <textarea
-                      className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Tell us about your specific challenges..."
-                      rows="3"
-                      value={additionalFeedback}
-                      onChange={(e) => setAdditionalFeedback(e.target.value)}
+                    <input
+                      type="number"
+                      value={beds}
+                      onChange={(e) => setBeds(e.target.value)}
+                      placeholder="50"
+                      className="w-full h-12 px-4 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-200 text-slate-900 placeholder-slate-400"
                     />
                   </div>
                   
-                  <button
-                    onClick={handleSubmitLead}
-                    disabled={!email || !contactName || !facilityName || !biggestPainPoint}
-                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-200 disabled:cursor-not-allowed"
-                  >
-                    Submit Feedback
-                  </button>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Average Daily Residents
+                      <span className="ml-2 px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-xs">Optional</span>
+                    </label>
+                    <input
+                      type="number"
+                      value={residents}
+                      onChange={(e) => setResidents(e.target.value)}
+                      placeholder={beds ? `Auto: ${beds}` : "47"}
+                      className="w-full h-12 px-4 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-200 text-slate-900 placeholder-slate-400"
+                    />
+                  </div>
                 </div>
-              )
-            ) : (
-              <div className="text-center">
-                <CheckCircle className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
-                <h4 className="text-lg font-semibold text-emerald-900 mb-2">Thank You!</h4>
-                <p className="text-emerald-800 text-sm">
-                  Your feedback helps us build features that matter most to aged care providers.
-                </p>
               </div>
-            )}
+
+              {/* Workforce Analytics Panel */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
+                  <div className="w-6 h-6 rounded bg-emerald-500 flex items-center justify-center">
+                    <Activity className="w-4 h-4 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-slate-900">Workforce Analytics</h3>
+                </div>
+                
+                <div className="space-y-5">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Registered Nurses (RN)
+                      <span className="ml-2 text-xs text-slate-500">hours/week</span>
+                    </label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={rnHours}
+                      onChange={(e) => setRnHours(e.target.value)}
+                      placeholder="168"
+                      className="w-full h-12 px-4 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-200 text-slate-900 placeholder-slate-400"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Enrolled Nurses (EN)
+                      <span className="ml-2 text-xs text-slate-500">hours/week</span>
+                    </label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={enHours}
+                      onChange={(e) => setEnHours(e.target.value)}
+                      placeholder="84"
+                      className="w-full h-12 px-4 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-200 text-slate-900 placeholder-slate-400"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Personal Care Workers
+                      <span className="ml-2 text-xs text-slate-500">hours/week</span>
+                    </label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={pcwHours}
+                      onChange={(e) => setPcwHours(e.target.value)}
+                      placeholder="420"
+                      className="w-full h-12 px-4 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-200 text-slate-900 placeholder-slate-400"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Panel */}
+            <div className="mt-8 pt-6 border-t border-slate-200">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <Info className="w-5 h-5 text-blue-600" />
+                  <span className="text-sm text-slate-600">Enter worked hours only (excluding leave, training, admin time)</span>
+                </div>
+                
+                {/* Live Validation Indicator */}
+                {beds && (rnHours || enHours || pcwHours) && (
+                  <div className="flex items-center gap-2 text-sm text-emerald-600">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                    Ready to calculate
+                  </div>
+                )}
+              </div>
+              
+              <button
+                onClick={handleCalculate}
+                disabled={!beds || (!rnHours && !enHours && !pcwHours) || isCalculating}
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-slate-400 disabled:to-slate-500 text-white py-4 px-6 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-3 text-base disabled:cursor-not-allowed shadow-lg"
+              >
+                {isCalculating ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    Analyzing Compliance...
+                  </>
+                ) : (
+                  <>
+                    <TrendingUp className="w-5 h-5" />
+                    Run Compliance Analysis
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Methodology - Inspired by Health Catalyst's clinical design */}
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 mb-8">
+          <details className="group">
+            <summary className="flex items-center justify-between p-6 cursor-pointer list-none hover:bg-slate-50 transition-colors border-b border-slate-200 group-open:border-b-0">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-purple-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-slate-900">QFR Calculation Methodology</h3>
+                  <p className="text-sm text-slate-600">How we calculate care minutes compliance</p>
+                </div>
+              </div>
+              <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform duration-200" />
+            </summary>
+            
+            <div className="p-6 bg-slate-50">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-white rounded-lg p-4 border border-slate-200">
+                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                    <span className="text-blue-600 font-bold text-sm">1</span>
+                  </div>
+                  <h4 className="font-semibold text-slate-900 mb-2">Sum Weekly Hours</h4>
+                  <p className="text-sm text-slate-600">RN + EN + PCW worked hours</p>
+                </div>
+                
+                <div className="bg-white rounded-lg p-4 border border-slate-200">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center mb-3">
+                    <span className="text-emerald-600 font-bold text-sm">2</span>
+                  </div>
+                  <h4 className="font-semibold text-slate-900 mb-2">Convert to Daily</h4>
+                  <p className="text-sm text-slate-600">(Hours × 60) ÷ 7 days</p>
+                </div>
+                
+                <div className="bg-white rounded-lg p-4 border border-slate-200">
+                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+                    <span className="text-purple-600 font-bold text-sm">3</span>
+                  </div>
+                  <h4 className="font-semibold text-slate-900 mb-2">Per Resident</h4>
+                  <p className="text-sm text-slate-600">Minutes ÷ residents</p>
+                </div>
+                
+                <div className="bg-white rounded-lg p-4 border border-slate-200">
+                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
+                    <span className="text-orange-600 font-bold text-sm">4</span>
+                  </div>
+                  <h4 className="font-semibold text-slate-900 mb-2">Compare Targets</h4>
+                  <p className="text-sm text-slate-600">215 total, 44 RN minutes</p>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        {/* Feedback Collection - Inspired by Clarify Health's personalization */}
+        {showResults && (
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-8 mb-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Brain className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                Help Shape Our Analytics Platform
+              </h3>
+              <p className="text-slate-700 mb-6 max-w-2xl mx-auto">
+                Your insights drive our development roadmap. Share your biggest challenge to influence our next features.
+              </p>
+              
+              {!isSubmitted ? (
+                !showEmailForm ? (
+                  <button
+                    onClick={() => setShowEmailForm(true)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg font-semibold transition-colors duration-200 flex items-center gap-3 mx-auto shadow-lg"
+                  >
+                    <Phone className="w-5 h-5" />
+                    Share Your Insights
+                  </button>
+                ) : (
+                  <div className="max-w-lg mx-auto space-y-4">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Your email address *"
+                      className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    />
+                    <input
+                      type="text"
+                      value={contactName}
+                      onChange={(e) => setContactName(e.target.value)}
+                      placeholder="Your name *"
+                      className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    />
+                    <input
+                      type="text"
+                      value={facilityName}
+                      onChange={(e) => setFacilityName(e.target.value)}
+                      placeholder="Facility name *"
+                      className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    />
+                    <select
+                      value={biggestPainPoint}
+                      onChange={(e) => setBiggestPainPoint(e.target.value)}
+                      className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    >
+                      <option value="">What's your biggest care minutes challenge? *</option>
+                      <option value="roster-to-compliance">Converting weekly rosters into compliance metrics</option>
+                      <option value="real-time-tracking">Tracking compliance in real-time, not just quarterly</option>
+                      <option value="manual-calculations">Manual spreadsheet calculations taking too much time</option>
+                      <option value="gpms-qfr-reporting">Streamlining QFR/GPMS reporting processes</option>
+                      <option value="audit-preparation">Preparing evidence for ACQSC audits</option>
+                      <option value="penalty-avoidance">Avoiding compliance penalties and funding cuts</option>
+                      <option value="staff-planning">Planning how many staff hours needed for compliance</option>
+                      <option value="other">Other (please tell us what you need most)</option>
+                    </select>
+                    
+                    <div className="text-left">
+                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                        Any specific challenges or features you'd like to see? (Optional)
+                      </label>
+                      <textarea
+                        className="w-full p-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Tell us about your specific situation..."
+                        rows="3"
+                        value={additionalFeedback}
+                        onChange={(e) => setAdditionalFeedback(e.target.value)}
+                      />
+                    </div>
+                    
+                    <button
+                      onClick={handleSubmitLead}
+                      disabled={!email || !contactName || !facilityName || !biggestPainPoint}
+                      className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-200 disabled:cursor-not-allowed shadow-lg"
+                    >
+                      Share Your Insights
+                    </button>
+                  </div>
+                )
+              ) : (
+                <div className="max-w-md mx-auto">
+                  <CheckCircle className="w-16 h-16 text-emerald-600 mx-auto mb-4" />
+                  <h4 className="text-xl font-semibold text-emerald-900 mb-2">Thank You!</h4>
+                  <p className="text-emerald-800">
+                    Your insights help us build the analytics platform aged care needs.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         )}
 
-        {/* Enhanced Legal Disclaimers */}
-        <div className="mt-8 bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-          <div className="flex items-start gap-3 mb-4">
-            <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
-            <h3 className="text-lg font-semibold text-slate-900">Important Disclaimers</h3>
-          </div>
-          
-          <div className="text-sm text-slate-700 space-y-3 leading-relaxed">
-            <p>
-              <strong>This calculator is for estimation purposes only</strong> and does not constitute legal, financial, or compliance advice.
-            </p>
-            
-            <ul className="space-y-2 ml-4 list-disc">
-              <li>Results are estimates based on standard care minutes calculation methods</li>
-              <li>Actual compliance determinations are made solely by ACQSC using your QFR data</li>
-              <li>Calculations assume standard workforce allocation and exclude leave/training time</li>
-              <li>Regulations and penalty rates are subject to change</li>
-              <li>Not responsible for compliance decisions based on this tool</li>
-            </ul>
-            
-            <p>
-              <strong>Professional advice recommended:</strong> Consult your compliance officer, legal advisor, or aged care consultant for official guidance on care minutes compliance.
-            </p>
+        {/* Legal Disclaimers - Inspired by clinical trust standards */}
+        <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0">
+              <AlertTriangle className="w-6 h-6 text-amber-600" />
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-4">Important Disclaimers</h3>
+              <div className="text-sm text-slate-700 space-y-3 leading-relaxed">
+                <p><strong>This calculator is for estimation purposes only</strong> and does not constitute legal, financial, or compliance advice.</p>
+                <ul className="space-y-2 ml-4">
+                  <li>• Results are estimates based on standard care minutes calculation methods</li>
+                  <li>• Actual compliance determinations are made solely by ACQSC using your QFR data</li>
+                  <li>• Calculations assume standard workforce allocation and exclude leave/training time</li>
+                  <li>• Regulations and penalty rates are subject to change</li>
+                  <li>• Not responsible for compliance decisions based on this tool</li>
+                </ul>
+                <p><strong>Professional advice recommended:</strong> Consult your compliance officer, legal advisor, or aged care consultant for official guidance on care minutes compliance.</p>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Footer */}
         <div className="mt-8 text-center text-xs text-slate-500">
-          <p>Last updated: July 2025 | Based on current Australian aged care regulations</p>
+          <p>Last updated: July 2025 | Based on current Australian aged care regulations and QFR reporting requirements</p>
         </div>
       </div>
     </div>
   );
+}
+
+export default CalculatorComponent;
