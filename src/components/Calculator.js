@@ -153,93 +153,97 @@ function CalculatorComponent() {
 
         {/* Calculator Inputs */}
         <div className="bg-gray-50 rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8 mb-8">
-          {/* Input Container with Consistent Layout */}
+          {/* Input Container with Perfect Alignment */}
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-8 mb-8">
-              {/* Facility Information Section */}
+            
+            {/* Section Headers */}
+            <div className="grid lg:grid-cols-2 gap-8 mb-6">
+              <div className="pb-3 border-b border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900">Facility Information</h3>
+              </div>
+              <div className="pb-3 border-b border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900">Weekly Staff Hours</h3>
+                <p className="text-sm text-gray-600 mt-1">Worked hours only (excluding leave/training)</p>
+              </div>
+            </div>
+
+            {/* Input Fields Grid */}
+            <div className="grid lg:grid-cols-2 gap-8">
+              
+              {/* Left Column - Facility Information */}
               <div className="space-y-6">
-                <div className="pb-3 border-b border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900">Facility Information</h3>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Number of Operational Beds
+                  </label>
+                  <input
+                    type="number"
+                    value={beds}
+                    onChange={(e) => setBeds(e.target.value)}
+                    placeholder="e.g. 50"
+                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                  />
                 </div>
                 
-                <div className="space-y-5">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Number of Operational Beds
-                    </label>
-                    <input
-                      type="number"
-                      value={beds}
-                      onChange={(e) => setBeds(e.target.value)}
-                      placeholder="e.g. 50"
-                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Average Daily Residents <span className="text-gray-500 font-normal">(optional)</span>
-                    </label>
-                    <input
-                      type="number"
-                      value={residents}
-                      onChange={(e) => setResidents(e.target.value)}
-                      placeholder={beds ? `Defaults to ${beds} if not specified` : "e.g. 47"}
-                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Average Daily Residents <span className="text-gray-500 font-normal">(optional)</span>
+                  </label>
+                  <input
+                    type="number"
+                    value={residents}
+                    onChange={(e) => setResidents(e.target.value)}
+                    placeholder={beds ? `Defaults to ${beds} if not specified` : "e.g. 47"}
+                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                  />
                 </div>
+
+                {/* Spacer to align with right column */}
+                <div className="h-12 lg:block hidden"></div>
               </div>
 
-              {/* Weekly Staff Hours Section */}
+              {/* Right Column - Weekly Staff Hours */}
               <div className="space-y-6">
-                <div className="pb-3 border-b border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900">Weekly Staff Hours</h3>
-                  <p className="text-sm text-gray-600 mt-1">Worked hours only (excluding leave/training)</p>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Registered Nurse (RN) Hours/Week
+                  </label>
+                  <input
+                    type="number"
+                    step="0.5"
+                    value={rnHours}
+                    onChange={(e) => setRnHours(e.target.value)}
+                    placeholder="e.g. 168"
+                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                  />
                 </div>
                 
-                <div className="space-y-5">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Registered Nurse (RN) Hours/Week
-                    </label>
-                    <input
-                      type="number"
-                      step="0.5"
-                      value={rnHours}
-                      onChange={(e) => setRnHours(e.target.value)}
-                      placeholder="e.g. 168"
-                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Enrolled Nurse (EN) Hours/Week
-                    </label>
-                    <input
-                      type="number"
-                      step="0.5"
-                      value={enHours}
-                      onChange={(e) => setEnHours(e.target.value)}
-                      placeholder="e.g. 84"
-                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Personal Care Worker (PCW/AIN) Hours/Week
-                    </label>
-                    <input
-                      type="number"
-                      step="0.5"
-                      value={pcwHours}
-                      onChange={(e) => setPcwHours(e.target.value)}
-                      placeholder="e.g. 420"
-                      className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Enrolled Nurse (EN) Hours/Week
+                  </label>
+                  <input
+                    type="number"
+                    step="0.5"
+                    value={enHours}
+                    onChange={(e) => setEnHours(e.target.value)}
+                    placeholder="e.g. 84"
+                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Personal Care Worker (PCW/AIN) Hours/Week
+                  </label>
+                  <input
+                    type="number"
+                    step="0.5"
+                    value={pcwHours}
+                    onChange={(e) => setPcwHours(e.target.value)}
+                    placeholder="e.g. 420"
+                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
+                  />
                 </div>
               </div>
             </div>
@@ -362,38 +366,38 @@ function CalculatorComponent() {
                   </span>
                 </summary>
                 
-                <div className="mt-6 space-y-4 text-sm text-gray-700 leading-relaxed">
+                <div className="mt-6 space-y-6 text-sm text-gray-700 leading-relaxed">
                   <p className="font-medium text-gray-900">Our calculator uses the exact same method required for QFR reporting:</p>
                   
                   <div className="grid sm:grid-cols-2 gap-6 mt-6">
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <h4 className="font-semibold text-gray-900">Step 1: Total Weekly Hours</h4>
                       <p>RN + EN + PCW hours (worked hours only, excluding leave/training)</p>
-                      <div className="bg-white p-3 rounded border font-mono text-xs">
+                      <div className="bg-white p-4 rounded border font-mono text-xs min-h-[60px] flex items-center">
                         {results.totalWeeklyHours} hours/week
                       </div>
                     </div>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <h4 className="font-semibold text-gray-900">Step 2: Convert to Daily Minutes</h4>
                       <p>(Weekly hours × 60 minutes) ÷ 7 days</p>
-                      <div className="bg-white p-3 rounded border font-mono text-xs">
+                      <div className="bg-white p-4 rounded border font-mono text-xs min-h-[60px] flex items-center">
                         ({results.totalWeeklyHours} × 60) ÷ 7 = {Math.round((results.totalWeeklyHours * 60) / 7)} mins/day
                       </div>
                     </div>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <h4 className="font-semibold text-gray-900">Step 3: Calculate Per Resident</h4>
                       <p>Daily minutes ÷ Average daily residents</p>
-                      <div className="bg-white p-3 rounded border font-mono text-xs">
+                      <div className="bg-white p-4 rounded border font-mono text-xs min-h-[60px] flex items-center">
                         {Math.round((results.totalWeeklyHours * 60) / 7)} ÷ {results.residentCount} = {results.careMinutesPerResident} mins/resident/day
                       </div>
                     </div>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <h4 className="font-semibold text-gray-900">Step 4: Compare to Targets</h4>
                       <p>215 total minutes, 44 RN minutes per resident per day</p>
-                      <div className="bg-white p-3 rounded border font-mono text-xs">
+                      <div className="bg-white p-4 rounded border font-mono text-xs min-h-[60px] flex items-center">
                         {results.careMinutesPerResident} ÷ 215 = {results.totalCompliancePercentage}% compliance
                       </div>
                     </div>
