@@ -40,7 +40,7 @@ function LandingPage({ onNavigateToCalculator }) {
           <div>
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-8">
               <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
-              Live Compliance Status. Real-time Care Minutes Tracking.
+              Compliance Status Calculator. Care Minutes Planning Tool.
             </div>
             
             <h1 className="text-6xl font-light text-gray-900 mb-6 leading-tight">
@@ -159,7 +159,7 @@ function LandingPage({ onNavigateToCalculator }) {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Intelligent Tracking</h3>
               <p className="text-gray-600 leading-relaxed">
-                Real-time care minutes calculator that flags compliance risk instantly. 
+                Care minutes calculator that helps identify compliance risks for planning.
                 Know your status before problems arise.
               </p>
             </div>
