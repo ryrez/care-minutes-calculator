@@ -82,7 +82,7 @@ function LandingPage({ onNavigateToCalculator }) {
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                 </div>
-                <div className="text-xs text-gray-500 font-medium">Planned Features</div>
+                <div className="text-xs text-gray-500 font-medium">Dashboard preview</div>
               </div>
               
               {/* Compliance Dial */}
