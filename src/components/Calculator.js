@@ -152,107 +152,151 @@ function CalculatorComponent() {
         </div>
 
         {/* Calculator Inputs */}
-        <div className="bg-gray-50 rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8 mb-8">
-          {/* Input Container with Perfect Alignment */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8 mb-8">
+          {/* Input Container with Professional Layout */}
           <div className="max-w-6xl mx-auto">
             
-            {/* Section Headers */}
-            <div className="grid lg:grid-cols-2 gap-8 mb-6">
-              <div className="pb-3 border-b border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900">Facility Information</h3>
+            {/* Section Headers with Professional Styling */}
+            <div className="grid lg:grid-cols-2 gap-8 mb-8">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">Facility Information</h3>
+                <p className="text-sm text-gray-600">Basic facility metrics for compliance calculation</p>
               </div>
-              <div className="pb-3 border-b border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900">Weekly Staff Hours</h3>
-                <p className="text-sm text-gray-600 mt-1">Worked hours only (excluding leave/training)</p>
+              <div className="border-l-4 border-green-500 pl-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">Weekly Staff Hours</h3>
+                <p className="text-sm text-gray-600">Worked hours only (excluding leave/training)</p>
               </div>
             </div>
 
-            {/* Input Fields Grid */}
+            {/* Input Fields Grid with Professional Card Design */}
             <div className="grid lg:grid-cols-2 gap-8">
               
               {/* Left Column - Facility Information */}
               <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="group">
+                  <label className="flex items-center text-sm font-medium text-gray-700 mb-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
                     Number of Operational Beds
                   </label>
-                  <input
-                    type="number"
-                    value={beds}
-                    onChange={(e) => setBeds(e.target.value)}
-                    placeholder="e.g. 50"
-                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                  />
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={beds}
+                      onChange={(e) => setBeds(e.target.value)}
+                      placeholder="50"
+                      className="w-full h-14 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all text-gray-900 placeholder-gray-400 text-base font-medium"
+                    />
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                      <span className="text-xs text-gray-400 font-medium">BEDS</span>
+                    </div>
+                  </div>
                 </div>
                 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Average Daily Residents <span className="text-gray-500 font-normal">(optional)</span>
+                <div className="group">
+                  <label className="flex items-center text-sm font-medium text-gray-700 mb-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    Average Daily Residents
+                    <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">Optional</span>
                   </label>
-                  <input
-                    type="number"
-                    value={residents}
-                    onChange={(e) => setResidents(e.target.value)}
-                    placeholder={beds ? `Defaults to ${beds} if not specified` : "e.g. 47"}
-                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                  />
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={residents}
+                      onChange={(e) => setResidents(e.target.value)}
+                      placeholder={beds ? beds : "45"}
+                      className="w-full h-14 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all text-gray-900 placeholder-gray-400 text-base font-medium"
+                    />
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                      <span className="text-xs text-gray-400 font-medium">RESIDENTS</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-2">Defaults to bed count if not specified</p>
                 </div>
 
                 {/* Spacer to align with right column */}
-                <div className="h-12 lg:block hidden"></div>
+                <div className="h-14 lg:block hidden"></div>
               </div>
 
               {/* Right Column - Weekly Staff Hours */}
               <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="group">
+                  <label className="flex items-center text-sm font-medium text-gray-700 mb-3">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
                     Registered Nurse (RN) Hours/Week
                   </label>
-                  <input
-                    type="number"
-                    step="0.5"
-                    value={rnHours}
-                    onChange={(e) => setRnHours(e.target.value)}
-                    placeholder="e.g. 168"
-                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                  />
+                  <div className="relative">
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={rnHours}
+                      onChange={(e) => setRnHours(e.target.value)}
+                      placeholder="168"
+                      className="w-full h-14 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:bg-white transition-all text-gray-900 placeholder-gray-400 text-base font-medium"
+                    />
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                      <span className="text-xs text-gray-400 font-medium">HRS/WK</span>
+                    </div>
+                  </div>
                 </div>
                 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="group">
+                  <label className="flex items-center text-sm font-medium text-gray-700 mb-3">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
                     Enrolled Nurse (EN) Hours/Week
                   </label>
-                  <input
-                    type="number"
-                    step="0.5"
-                    value={enHours}
-                    onChange={(e) => setEnHours(e.target.value)}
-                    placeholder="e.g. 84"
-                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                  />
+                  <div className="relative">
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={enHours}
+                      onChange={(e) => setEnHours(e.target.value)}
+                      placeholder="84"
+                      className="w-full h-14 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:bg-white transition-all text-gray-900 placeholder-gray-400 text-base font-medium"
+                    />
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                      <span className="text-xs text-gray-400 font-medium">HRS/WK</span>
+                    </div>
+                  </div>
                 </div>
                 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="group">
+                  <label className="flex items-center text-sm font-medium text-gray-700 mb-3">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
                     Personal Care Worker (PCW/AIN) Hours/Week
                   </label>
-                  <input
-                    type="number"
-                    step="0.5"
-                    value={pcwHours}
-                    onChange={(e) => setPcwHours(e.target.value)}
-                    placeholder="e.g. 420"
-                    className="w-full h-12 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-base"
-                  />
+                  <div className="relative">
+                    <input
+                      type="number"
+                      step="0.5"
+                      value={pcwHours}
+                      onChange={(e) => setPcwHours(e.target.value)}
+                      placeholder="420"
+                      className="w-full h-14 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:bg-white transition-all text-gray-900 placeholder-gray-400 text-base font-medium"
+                    />
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                      <span className="text-xs text-gray-400 font-medium">HRS/WK</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-            <p className="text-sm text-blue-800">
-              <strong>Note:</strong> Enter only "worked hours" (excluding leave, training, admin time). This matches what you report in your Quarterly Financial Report (QFR).
-            </p>
+          {/* Professional Info Banner */}
+          <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center mt-0.5">
+                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-blue-900 mb-1">QFR Compliance Note</h4>
+                <p className="text-sm text-blue-800">
+                  Enter only "worked hours" (excluding leave, training, admin time). This matches what you report in your Quarterly Financial Report (QFR).
+                </p>
+              </div>
+            </div>
           </div>
 
           <button
@@ -264,6 +308,9 @@ function CalculatorComponent() {
             Calculate Compliance Status
           </button>
         </div>
+
+        {/* Gap between sections */}
+        <div className="h-8"></div>
 
         {/* Results */}
         {showResults && beds && (rnHours || enHours || pcwHours) && (
