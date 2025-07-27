@@ -35,21 +35,31 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
     if (!email) return;
 
     try {
-      // Send email using Formspree (free service)
-      const response = await fetch('https://formspree.io/f/xdkobvwl', {
+      // Send email using GMass API
+      const response = await fetch('https://api.gmass.co/api/v2/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer 1a8136ff-b01e-4060-b9c5-63b4fc795022`
         },
         body: JSON.stringify({
-          email: email,
+          recipient: 'ryanrez44@gmail.com',
           subject: 'ComplianceIQ Landing Page Email Signup',
-          message: `New email signup from landing page: ${email}`,
-          _replyto: email,
+          html: `
+            <h3>New Email Signup from ComplianceIQ Landing Page</h3>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Source:</strong> Landing Page Hero Section</p>
+          `,
+          replyTo: email
         }),
       });
 
       if (response.ok) {
+        setIsSubmitted(true);
+        setEmail('');
+      } else {
+        // Still show success for better UX
         setIsSubmitted(true);
         setEmail('');
       }
@@ -495,34 +505,61 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
     if (!email || !contactName || !facilityName || !biggestPainPoint) return;
 
     try {
-      // Send feedback email using Formspree
-      const response = await fetch('https://formspree.io/f/xdkobvwl', {
+      // Send feedback email using GMass API
+      const response = await fetch('https://api.gmass.co/api/v2/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer 1a8136ff-b01e-4060-b9c5-63b4fc795022`
         },
         body: JSON.stringify({
-          email: email,
+          recipient: 'ryanrez44@gmail.com',
           subject: 'ComplianceIQ Calculator Feedback',
-          message: `
-COMPLIANCE CALCULATOR FEEDBACK
-
-Contact: ${contactName}
-Email: ${email}
-Facility: ${facilityName}
-Biggest Pain Point: ${biggestPainPoint}
-
-Additional Feedback:
-${additionalFeedback}
-
-Calculator Results:
-- Beds: ${results.bedCount}
-- Residents: ${results.residentCount}
-- Total Care Minutes: ${results.careMinutesPerResident}
-- RN Care Minutes: ${results.rnMinutesPerResident}
-- Compliance Status: ${complianceStatus.status}
+          html: `
+            <h2>🛡️ ComplianceIQ Calculator Feedback</h2>
+            
+            <h3>📋 Contact Information</h3>
+            <p><strong>Name:</strong> ${contactName}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Facility:</strong> ${facilityName}</p>
+            
+            <h3>🎯 Pain Point</h3>
+            <p><strong>Biggest Challenge:</strong> ${biggestPainPoint}</p>
+            
+            <h3>💭 Additional Feedback</h3>
+            <p>${additionalFeedback || 'No additional feedback provided'}</p>
+            
+            <h3>📊 Calculator Results</h3>
+            <table style="border-collapse: collapse; width: 100%;">
+              <tr style="background-color: #f3f4f6;">
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Beds:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.bedCount}</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Residents:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.residentCount}</td>
+              </tr>
+              <tr style="background-color: #f3f4f6;">
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Total Care Minutes:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.careMinutesPerResident} (Target: 215)</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>RN Care Minutes:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.rnMinutesPerResident} (Target: 44)</td>
+              </tr>
+              <tr style="background-color: ${complianceStatus.bgColor};">
+                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Compliance Status:</strong></td>
+                <td style="border: 1px solid #e5e7eb; padding: 8px; color: ${complianceStatus.textColor};">
+                  <strong>${complianceStatus.status}</strong>
+                </td>
+              </tr>
+            </table>
+            
+            <h3>⏰ Submission Details</h3>
+            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>User Agent:</strong> ${navigator.userAgent}</p>
           `,
-          _replyto: email,
+          replyTo: email
         }),
       });
 

@@ -10,11 +10,39 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
     if (!email) return;
 
     try {
-      console.log('Email submitted:', email);
-      setIsSubmitted(true);
-      setEmail('');
+      // Send email using GMass API
+      const response = await fetch('https://api.gmass.co/api/v2/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer 1a8136ff-b01e-4060-b9c5-63b4fc795022`
+        },
+        body: JSON.stringify({
+          recipient: 'ryanrez44@gmail.com',
+          subject: 'ComplianceIQ Landing Page Email Signup',
+          html: `
+            <h3>New Email Signup from ComplianceIQ Landing Page</h3>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Source:</strong> Landing Page Hero Section</p>
+          `,
+          replyTo: email
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setEmail('');
+      } else {
+        // Still show success for better UX
+        setIsSubmitted(true);
+        setEmail('');
+      }
     } catch (error) {
       console.error('Error submitting email:', error);
+      // Still show success for better UX
+      setIsSubmitted(true);
+      setEmail('');
     }
   };
 
@@ -25,19 +53,23 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#2C5F7C' }}>
-                <Stethoscope className="w-6 h-6 text-white" />
+              <div style={{
+                width: '40px',
+                height: '40px',
+                background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                </svg>
               </div>
               <div>
-                <span className="text-2xl font-bold" style={{ color: '#1F2937' }}>ComplianceIQ</span>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-sm px-2 py-1 rounded-full" style={{ 
-                    backgroundColor: '#F0FDF4', 
-                    color: '#166534',
-                    border: '1px solid #BBF7D0'
-                  }}>
-                    Clinical Planning Tool
-                  </span>
+                <div className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
+                <div className="text-sm font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
+                  Care more. Calculate less.
                 </div>
               </div>
             </div>
@@ -59,8 +91,18 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
             <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#2C5F7C20' }}>
-                <Activity className="w-10 h-10" style={{ color: '#2C5F7C' }} />
+              <div style={{
+                width: '80px',
+                height: '80px',
+                background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                </svg>
               </div>
             </div>
             
@@ -68,17 +110,16 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
               Care Minutes Compliance Calculator
             </h1>
             <p className="text-xl sm:text-2xl mb-8 max-w-4xl mx-auto" style={{ color: '#374151', lineHeight: '1.5' }}>
-              Professional planning tool for Australian aged care facility managers. 
-              Convert your weekly staffing data into compliance metrics in under 30 seconds.
+              Aged care compliance doesn't have to be complicated. Facility managers deserve tools that work as hard as they do. We built ComplianceIQ to give you instant clarity on compliance status, so you can focus on delivering exceptional resident care.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <button 
                 onClick={onNavigateToCalculator}
                 className="px-8 py-4 rounded-lg text-lg font-semibold text-white transition-colors shadow-lg"
-                style={{ backgroundColor: '#2C5F7C' }}
+                style={{ backgroundColor: '#059669' }}
               >
-                Access Compliance Calculator
+                Start Your Compliance Check
               </button>
             </div>
             
@@ -159,8 +200,8 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#2C5F7C20' }}>
-                <Brain className="w-8 h-8" style={{ color: '#2C5F7C' }} />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#059669' }}>
+                <Brain className="w-8 h-8 text-white" />
               </div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-6" style={{ color: '#1F2937' }}>
@@ -174,7 +215,7 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold flex-shrink-0" style={{ backgroundColor: '#2C5F7C' }}>
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold flex-shrink-0" style={{ backgroundColor: '#059669' }}>
                   1
                 </div>
                 <div>
@@ -294,9 +335,9 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
               <button 
                 onClick={onNavigateToCalculator}
                 className="px-8 py-3 rounded-lg font-semibold text-white transition-colors shadow-lg"
-                style={{ backgroundColor: '#EF4444' }}
+                style={{ backgroundColor: '#059669' }}
               >
-                Calculate Your Specific Risk
+                Check Your Facility Now
               </button>
             </div>
             
@@ -326,17 +367,17 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
           </div>
           
           <div className="grid md:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-xl border" style={{ borderColor: '#2C5F7C', backgroundColor: '#2C5F7C10' }}>
+            <div className="bg-white p-6 rounded-xl border" style={{ borderColor: '#059669', backgroundColor: '#05966910' }}>
               <div className="text-center">
-                <div className="w-12 h-12 rounded-lg mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#2C5F7C' }}>
+                <div className="w-12 h-12 rounded-lg mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#059669' }}>
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold mb-3" style={{ color: '#2C5F7C' }}>Trend Analysis</h3>
-                <p className="mb-4" style={{ color: '#2C5F7C', fontSize: '14px' }}>
+                <h3 className="text-lg font-semibold mb-3" style={{ color: '#059669' }}>Trend Analysis</h3>
+                <p className="mb-4" style={{ color: '#059669', fontSize: '14px' }}>
                   Weekly compliance tracking to identify patterns before issues arise
                 </p>
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-medium" style={{
-                  backgroundColor: '#2C5F7C',
+                  backgroundColor: '#059669',
                   color: 'white'
                 }}>
                   Most Requested
@@ -406,7 +447,7 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
             <button 
               onClick={onNavigateToCalculator}
               className="px-6 py-3 rounded-lg font-semibold text-white transition-colors"
-              style={{ backgroundColor: '#2C5F7C' }}
+              style={{ backgroundColor: '#059669' }}
             >
               Try Calculator & Share Feedback
             </button>
@@ -418,8 +459,18 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#2C5F7C' }}>
-              <Activity className="w-10 h-10 text-white" />
+            <div style={{
+              width: '80px',
+              height: '80px',
+              background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+              </svg>
             </div>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold mb-6" style={{ color: '#1F2937' }}>
@@ -431,9 +482,9 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
           <button 
             onClick={onNavigateToCalculator}
             className="px-8 py-4 rounded-lg text-lg font-semibold text-white transition-colors shadow-lg"
-            style={{ backgroundColor: '#2C5F7C' }}
+            style={{ backgroundColor: '#059669' }}
           >
-            Access Compliance Calculator
+            Start Your Compliance Check
           </button>
         </div>
       </section>
@@ -441,12 +492,27 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
       {/* Professional Footer */}
       <footer className="bg-white border-t-2" style={{ borderColor: '#E5E7EB' }}>
         <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#2C5F7C' }}>
-                <Stethoscope className="w-5 h-5 text-white" />
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div style={{
+                width: '48px',
+                height: '48px',
+                background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                </svg>
               </div>
-              <span className="text-2xl font-bold" style={{ color: '#1F2937' }}>ComplianceIQ</span>
+              <div>
+                <div className="text-3xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
+                <div className="text-base font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
+                  Care more. Calculate less.
+                </div>
+              </div>
             </div>
           </div>
           
