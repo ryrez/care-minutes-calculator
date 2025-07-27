@@ -78,7 +78,7 @@ function LandingPage({ onNavigateToCalculator }) {
               </div>
               <div className="bg-white p-6 rounded-xl shadow-sm">
                 <div className="text-3xl font-bold text-red-600 mb-2">2026</div>
-                <p className="text-gray-700">until funding cuts begin for non-compliant facilities</p>
+                <p className="text-gray-700">funding cuts begin for non-compliant facilities</p>
                 <p className="text-sm text-gray-500 mt-2">Starting April 2026</p>
               </div>
               <div className="bg-white p-6 rounded-xl shadow-sm">
@@ -206,29 +206,46 @@ function LandingPage({ onNavigateToCalculator }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Based on User Feedback
+              You Tell Us, We Build It
             </h2>
             <p className="text-xl text-gray-600">
-              We're developing additional features based on what aged care providers have requested
+              Our development roadmap is driven entirely by user feedback. The most requested features get built first.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-6">
             <div className="bg-blue-50 p-6 rounded-xl text-center">
               <h3 className="text-lg font-semibold text-blue-900 mb-3">Trend Tracking</h3>
               <p className="text-blue-800 mb-4">Simple weekly compliance tracking to spot trends before they become problems</p>
-              <span className="inline-block bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded">User Requested</span>
+              <span className="inline-block bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded">Most Requested</span>
             </div>
             <div className="bg-blue-50 p-6 rounded-xl text-center">
               <h3 className="text-lg font-semibold text-blue-900 mb-3">Email Alerts</h3>
               <p className="text-blue-800 mb-4">Automatic notifications when compliance drops below your chosen threshold</p>
-              <span className="inline-block bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded">User Requested</span>
+              <span className="inline-block bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded">Frequently Requested</span>
             </div>
             <div className="bg-blue-50 p-6 rounded-xl text-center">
               <h3 className="text-lg font-semibold text-blue-900 mb-3">Export Tools</h3>
               <p className="text-blue-800 mb-4">Prepare compliance reports and documentation for regulatory submissions</p>
-              <span className="inline-block bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded">User Requested</span>
+              <span className="inline-block bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded">Often Requested</span>
             </div>
+            <div className="bg-green-50 p-6 rounded-xl text-center border-2 border-green-200">
+              <h3 className="text-lg font-semibold text-green-900 mb-3">Your Idea?</h3>
+              <p className="text-green-800 mb-4">Tell us what you need and we'll prioritize features based on demand from the community</p>
+              <span className="inline-block bg-green-200 text-green-800 text-xs px-2 py-1 rounded">You Decide</span>
+            </div>
+          </div>
+          
+          <div className="text-center mt-8">
+            <p className="text-gray-600 mb-4">
+              Features are prioritized based on user feedback frequency. Use our calculator and let us know what you need most.
+            </p>
+            <button 
+              onClick={onNavigateToCalculator}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Try Calculator & Share Feedback
+            </button>
           </div>
         </div>
       </section>
