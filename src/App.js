@@ -35,23 +35,17 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
     if (!email) return;
 
     try {
-      // Send email using GMass API
-      const response = await fetch('https://api.gmass.co/api/v2/send', {
+      // Send email using Getform.io
+      const response = await fetch('https://getform.io/f/avrykrea', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer 1a8136ff-b01e-4060-b9c5-63b4fc795022`
         },
         body: JSON.stringify({
-          recipient: 'ryanrez44@gmail.com',
-          subject: 'ComplianceIQ Landing Page Email Signup',
-          html: `
-            <h3>New Email Signup from ComplianceIQ Landing Page</h3>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
-            <p><strong>Source:</strong> Landing Page Hero Section</p>
-          `,
-          replyTo: email
+          email: email,
+          source: 'Landing Page Email Signup',
+          timestamp: new Date().toLocaleString(),
+          userAgent: navigator.userAgent
         }),
       });
 
@@ -505,61 +499,30 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
     if (!email || !contactName || !facilityName || !biggestPainPoint) return;
 
     try {
-      // Send feedback email using GMass API
-      const response = await fetch('https://api.gmass.co/api/v2/send', {
+      // Send feedback using Getform.io
+      const response = await fetch('https://getform.io/f/avrykrea', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer 1a8136ff-b01e-4060-b9c5-63b4fc795022`
         },
         body: JSON.stringify({
-          recipient: 'ryanrez44@gmail.com',
-          subject: 'ComplianceIQ Calculator Feedback',
-          html: `
-            <h2>🛡️ ComplianceIQ Calculator Feedback</h2>
-            
-            <h3>📋 Contact Information</h3>
-            <p><strong>Name:</strong> ${contactName}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Facility:</strong> ${facilityName}</p>
-            
-            <h3>🎯 Pain Point</h3>
-            <p><strong>Biggest Challenge:</strong> ${biggestPainPoint}</p>
-            
-            <h3>💭 Additional Feedback</h3>
-            <p>${additionalFeedback || 'No additional feedback provided'}</p>
-            
-            <h3>📊 Calculator Results</h3>
-            <table style="border-collapse: collapse; width: 100%;">
-              <tr style="background-color: #f3f4f6;">
-                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Beds:</strong></td>
-                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.bedCount}</td>
-              </tr>
-              <tr>
-                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Residents:</strong></td>
-                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.residentCount}</td>
-              </tr>
-              <tr style="background-color: #f3f4f6;">
-                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Total Care Minutes:</strong></td>
-                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.careMinutesPerResident} (Target: 215)</td>
-              </tr>
-              <tr>
-                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>RN Care Minutes:</strong></td>
-                <td style="border: 1px solid #e5e7eb; padding: 8px;">${results.rnMinutesPerResident} (Target: 44)</td>
-              </tr>
-              <tr style="background-color: ${complianceStatus.bgColor};">
-                <td style="border: 1px solid #e5e7eb; padding: 8px;"><strong>Compliance Status:</strong></td>
-                <td style="border: 1px solid #e5e7eb; padding: 8px; color: ${complianceStatus.textColor};">
-                  <strong>${complianceStatus.status}</strong>
-                </td>
-              </tr>
-            </table>
-            
-            <h3>⏰ Submission Details</h3>
-            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
-            <p><strong>User Agent:</strong> ${navigator.userAgent}</p>
-          `,
-          replyTo: email
+          name: contactName,
+          email: email,
+          facility: facilityName,
+          painPoint: biggestPainPoint,
+          additionalFeedback: additionalFeedback,
+          // Calculator results
+          beds: results.bedCount,
+          residents: results.residentCount,
+          totalCareMinutes: results.careMinutesPerResident,
+          rnCareMinutes: results.rnMinutesPerResident,
+          complianceStatus: complianceStatus.status,
+          totalCompliancePercentage: results.totalCompliancePercentage,
+          rnCompliancePercentage: results.rnCompliancePercentage,
+          // Additional context
+          timestamp: new Date().toLocaleString(),
+          userAgent: navigator.userAgent,
+          source: 'ComplianceIQ Calculator'
         }),
       });
 

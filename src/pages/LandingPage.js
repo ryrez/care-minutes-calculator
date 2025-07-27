@@ -10,23 +10,17 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
     if (!email) return;
 
     try {
-      // Send email using GMass API
-      const response = await fetch('https://api.gmass.co/api/v2/send', {
+      // Send email signup using Getform.io
+      const response = await fetch('https://getform.io/f/YOUR_FORM_ID', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer 1a8136ff-b01e-4060-b9c5-63b4fc795022`
         },
         body: JSON.stringify({
-          recipient: 'ryanrez44@gmail.com',
-          subject: 'ComplianceIQ Landing Page Email Signup',
-          html: `
-            <h3>New Email Signup from ComplianceIQ Landing Page</h3>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
-            <p><strong>Source:</strong> Landing Page Hero Section</p>
-          `,
-          replyTo: email
+          email: email,
+          source: 'Landing Page Email Signup',
+          timestamp: new Date().toLocaleString(),
+          userAgent: navigator.userAgent
         }),
       });
 
