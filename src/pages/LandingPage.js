@@ -10,17 +10,28 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
     if (!email) return;
 
     try {
-      // Send email signup using Getform.io
-      const response = await fetch('https://getform.io/f/YOUR_FORM_ID', {
+      // Send email signup using Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          access_key: '312285e3-d3ad-4d63-af4e-b5069068cb30',
+          name: 'Landing Page Signup',
           email: email,
-          source: 'Landing Page Email Signup',
-          timestamp: new Date().toLocaleString(),
-          userAgent: navigator.userAgent
+          subject: 'ComplianceIQ Landing Page Email Signup',
+          message: `
+🛡️ NEW EMAIL SIGNUP - COMPLIANCEIQ
+
+📧 EMAIL: ${email}
+📅 TIME: ${new Date().toLocaleString()}
+🌐 SOURCE: Landing Page Hero Section
+🖥️ BROWSER: ${navigator.userAgent.split(')')[0]})
+
+This user signed up for updates about ComplianceIQ from the landing page.
+          `,
+          from_name: 'ComplianceIQ Landing Page'
         }),
       });
 

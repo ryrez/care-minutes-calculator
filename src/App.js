@@ -35,17 +35,28 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
     if (!email) return;
 
     try {
-      // Send email using Getform.io
-      const response = await fetch('https://getform.io/f/avrykrea', {
+      // Send email using Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          access_key: '312285e3-d3ad-4d63-af4e-b5069068cb30',
+          name: 'Landing Page Signup',
           email: email,
-          source: 'Landing Page Email Signup',
-          timestamp: new Date().toLocaleString(),
-          userAgent: navigator.userAgent
+          subject: 'ComplianceIQ Landing Page Email Signup',
+          message: `
+🛡️ NEW EMAIL SIGNUP - COMPLIANCEIQ
+
+📧 EMAIL: ${email}
+📅 TIME: ${new Date().toLocaleString()}
+🌐 SOURCE: Landing Page Hero Section
+🖥️ BROWSER: ${navigator.userAgent.split(')')[0]})
+
+This user signed up for updates about ComplianceIQ from the landing page.
+          `,
+          from_name: 'ComplianceIQ Landing Page'
         }),
       });
 
@@ -499,30 +510,47 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
     if (!email || !contactName || !facilityName || !biggestPainPoint) return;
 
     try {
-      // Send feedback using Getform.io
-      const response = await fetch('https://getform.io/f/avrykrea', {
+      // Send feedback using Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          access_key: '312285e3-d3ad-4d63-af4e-b5069068cb30',
           name: contactName,
           email: email,
-          facility: facilityName,
-          painPoint: biggestPainPoint,
-          additionalFeedback: additionalFeedback,
-          // Calculator results
-          beds: results.bedCount,
-          residents: results.residentCount,
-          totalCareMinutes: results.careMinutesPerResident,
-          rnCareMinutes: results.rnMinutesPerResident,
-          complianceStatus: complianceStatus.status,
-          totalCompliancePercentage: results.totalCompliancePercentage,
-          rnCompliancePercentage: results.rnCompliancePercentage,
-          // Additional context
-          timestamp: new Date().toLocaleString(),
-          userAgent: navigator.userAgent,
-          source: 'ComplianceIQ Calculator'
+          subject: 'ComplianceIQ Calculator Feedback',
+          message: `
+🛡️ COMPLIANCEIQ CALCULATOR FEEDBACK
+
+📋 CONTACT INFORMATION
+Name: ${contactName}
+Email: ${email}
+Facility: ${facilityName}
+
+🎯 PAIN POINT
+Biggest Challenge: ${biggestPainPoint}
+
+💭 ADDITIONAL FEEDBACK
+${additionalFeedback || 'No additional feedback provided'}
+
+📊 CALCULATOR RESULTS
+• Beds: ${results.bedCount}
+• Residents: ${results.residentCount}
+• Total Care Minutes: ${results.careMinutesPerResident} (Target: 215)
+• RN Care Minutes: ${results.rnMinutesPerResident} (Target: 44)
+• Compliance Status: ${complianceStatus.status}
+• Total Compliance: ${results.totalCompliancePercentage}%
+• RN Compliance: ${results.rnCompliancePercentage}%
+
+⏰ SUBMISSION DETAILS
+Time: ${new Date().toLocaleString()}
+Source: ComplianceIQ Calculator
+Browser: ${navigator.userAgent.split(')')[0]})
+          `,
+          from_name: contactName,
+          reply_to: email
         }),
       });
 
