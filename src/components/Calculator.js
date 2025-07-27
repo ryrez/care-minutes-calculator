@@ -265,22 +265,36 @@ function CalculatorComponent() {
               {/* Current Performance */}
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 sm:p-8 shadow-sm">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-6">Current Performance</h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-gray-700">Total weekly hours:</span>
-                    <span className="font-semibold text-gray-900">{results.totalWeeklyHours} hours</span>
+                <div className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-sm text-gray-600">Total weekly hours:</div>
+                    <div className="text-right">
+                      <span className="text-2xl font-bold text-gray-900">{results.totalWeeklyHours}</span>
+                      <span className="text-sm text-gray-600 ml-1">hours</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-gray-700">Care minutes/resident/day:</span>
-                    <span className="font-semibold text-gray-900">{results.careMinutesPerResident} minutes</span>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-sm text-gray-600">Care minutes/resident/day:</div>
+                    <div className="text-right">
+                      <span className="text-2xl font-bold text-gray-900">{results.careMinutesPerResident}</span>
+                      <span className="text-sm text-gray-600 ml-1">minutes</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-gray-700">RN minutes/resident/day:</span>
-                    <span className="font-semibold text-gray-900">{results.rnMinutesPerResident} minutes</span>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-sm text-gray-600">RN minutes/resident/day:</div>
+                    <div className="text-right">
+                      <span className="text-2xl font-bold text-gray-900">{results.rnMinutesPerResident}</span>
+                      <span className="text-sm text-gray-600 ml-1">minutes</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-gray-700">Residents:</span>
-                    <span className="font-semibold text-gray-900">{results.residentCount}</span>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-sm text-gray-600">Residents:</div>
+                    <div className="text-right">
+                      <span className="text-2xl font-bold text-gray-900">{results.residentCount}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -288,29 +302,104 @@ function CalculatorComponent() {
               {/* Compliance Targets */}
               <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 sm:p-8 shadow-sm">
                 <h3 className="text-lg sm:text-xl font-bold text-blue-900 mb-6">Compliance Targets</h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
-                    <span className="text-blue-800">Total required:</span>
-                    <span className="font-semibold text-blue-900">215 minutes/resident/day</span>
+                <div className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-sm text-blue-700">Total required:</div>
+                    <div className="text-right">
+                      <span className="text-2xl font-bold text-blue-900">215</span>
+                      <span className="text-sm text-blue-700 ml-1">minutes/resident/day</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
-                    <span className="text-blue-800">RN required:</span>
-                    <span className="font-semibold text-blue-900">44 minutes/resident/day</span>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-sm text-blue-700">RN required:</div>
+                    <div className="text-right">
+                      <span className="text-2xl font-bold text-blue-900">44</span>
+                      <span className="text-sm text-blue-700 ml-1">minutes/resident/day</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
-                    <span className="text-blue-800">Total compliance:</span>
-                    <span className={`font-semibold ${results.isTotalCompliant ? 'text-green-700' : 'text-red-700'}`}>
-                      {results.totalCompliancePercentage}%
-                    </span>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-sm text-blue-700">Total compliance:</div>
+                    <div className="text-right">
+                      <span className={`text-2xl font-bold ${results.isTotalCompliant ? 'text-green-700' : 'text-red-600'}`}>
+                        {results.totalCompliancePercentage}%
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-blue-800">RN compliance:</span>
-                    <span className={`font-semibold ${results.isRnCompliant ? 'text-green-700' : 'text-red-700'}`}>
-                      {results.rnCompliancePercentage}%
-                    </span>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-sm text-blue-700">RN compliance:</div>
+                    <div className="text-right">
+                      <span className={`text-2xl font-bold ${results.isRnCompliant ? 'text-green-700' : 'text-red-600'}`}>
+                        {results.rnCompliancePercentage}%
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* How This Calculation Works */}
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 sm:p-8 shadow-sm">
+              <details className="group">
+                <summary className="flex items-center justify-between cursor-pointer list-none">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">📊 How This Calculation Works</h3>
+                  <span className="text-gray-500 group-open:rotate-180 transition-transform duration-200">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                </summary>
+                
+                <div className="mt-6 space-y-4 text-sm text-gray-700 leading-relaxed">
+                  <p className="font-medium text-gray-900">Our calculator uses the exact same method required for QFR reporting:</p>
+                  
+                  <div className="grid sm:grid-cols-2 gap-6 mt-6">
+                    <div className="space-y-3">
+                      <h4 className="font-semibold text-gray-900">Step 1: Total Weekly Hours</h4>
+                      <p>RN + EN + PCW hours (worked hours only, excluding leave/training)</p>
+                      <div className="bg-white p-3 rounded border font-mono text-xs">
+                        {results.totalWeeklyHours} hours/week
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <h4 className="font-semibold text-gray-900">Step 2: Convert to Daily Minutes</h4>
+                      <p>(Weekly hours × 60 minutes) ÷ 7 days</p>
+                      <div className="bg-white p-3 rounded border font-mono text-xs">
+                        ({results.totalWeeklyHours} × 60) ÷ 7 = {Math.round((results.totalWeeklyHours * 60) / 7)} mins/day
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <h4 className="font-semibold text-gray-900">Step 3: Calculate Per Resident</h4>
+                      <p>Daily minutes ÷ Average daily residents</p>
+                      <div className="bg-white p-3 rounded border font-mono text-xs">
+                        {Math.round((results.totalWeeklyHours * 60) / 7)} ÷ {results.residentCount} = {results.careMinutesPerResident} mins/resident/day
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <h4 className="font-semibold text-gray-900">Step 4: Compare to Targets</h4>
+                      <p>215 total minutes, 44 RN minutes per resident per day</p>
+                      <div className="bg-white p-3 rounded border font-mono text-xs">
+                        {results.careMinutesPerResident} ÷ 215 = {results.totalCompliancePercentage}% compliance
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p className="text-blue-900 font-medium">Official Formula:</p>
+                    <p className="text-blue-800 font-mono text-xs mt-1">
+                      Total care minutes ÷ Occupied bed days = Minutes per resident per day
+                    </p>
+                    <p className="text-blue-700 text-xs mt-2">
+                      Source: Department of Health QFR Reporting Guidelines
+                    </p>
+                  </div>
+                </div>
+              </details>
             </div>
 
             {/* Shortfall Analysis */}
