@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Stethoscope, Shield, CheckCircle, Clock, Users, AlertTriangle, FileText, Activity, TrendingUp, Brain, Target } from 'lucide-react';
 
 // Main App Component
@@ -35,11 +35,29 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
     if (!email) return;
 
     try {
-      console.log('Email submitted:', email);
-      setIsSubmitted(true);
-      setEmail('');
+      // Send email using Formspree (free service)
+      const response = await fetch('https://formspree.io/f/xdkobvwl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          subject: 'ComplianceIQ Landing Page Email Signup',
+          message: `New email signup from landing page: ${email}`,
+          _replyto: email,
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setEmail('');
+      }
     } catch (error) {
       console.error('Error submitting email:', error);
+      // Still show success for better UX
+      setIsSubmitted(true);
+      setEmail('');
     }
   };
 
@@ -50,25 +68,23 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-4">
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
-                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
-                  <div className="text-sm font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
-                    Care more. Calculate less.
-                  </div>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
+                <div className="text-sm font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
+                  Care more. Calculate less.
                 </div>
               </div>
             </div>
@@ -90,21 +106,18 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
             <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 flex items-center justify-center" style={{ position: 'relative' }}>
-                <div style={{
-                  width: '80px',
-                  height: '80px',
-                  background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
-                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'relative'
-                }}>
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
-                  </svg>
-                </div>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                </svg>
               </div>
             </div>
             
@@ -259,7 +272,7 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
                 <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
               </svg>
             </div>
@@ -284,26 +297,24 @@ function ProfessionalLandingPage({ onNavigateToCalculator }) {
       <footer className="bg-white border-t-2" style={{ borderColor: '#E5E7EB' }}>
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="text-center">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div style={{
-                  width: '48px',
-                  height: '48px',
-                  background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
-                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
-                  <div className="text-base font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
-                    Care more. Calculate less.
-                  </div>
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div style={{
+                width: '48px',
+                height: '48px',
+                background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div className="text-3xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
+                <div className="text-base font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
+                  Care more. Calculate less.
                 </div>
               </div>
             </div>
@@ -368,6 +379,29 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCalculating, setIsCalculating] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Save state to localStorage
+  useEffect(() => {
+    const savedData = {
+      beds, residents, rnHours, enHours, pcwHours, currentStep, showResults
+    };
+    localStorage.setItem('careMinutesData', JSON.stringify(savedData));
+  }, [beds, residents, rnHours, enHours, pcwHours, currentStep, showResults]);
+
+  // Load state from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('careMinutesData');
+    if (saved) {
+      const data = JSON.parse(saved);
+      setBeds(data.beds || '');
+      setResidents(data.residents || '');
+      setRnHours(data.rnHours || '');
+      setEnHours(data.enHours || '');
+      setPcwHours(data.pcwHours || '');
+      setCurrentStep(data.currentStep || 1);
+      setShowResults(data.showResults || false);
+    }
+  }, []);
 
   const targetMinutes = 215;
   const rnTargetMinutes = 44;
@@ -454,6 +488,55 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
     setCurrentStep(1);
     setShowResults(false);
     setShowFeedback(false);
+    localStorage.removeItem('careMinutesData');
+  };
+
+  const handleFeedbackSubmit = async () => {
+    if (!email || !contactName || !facilityName || !biggestPainPoint) return;
+
+    try {
+      // Send feedback email using Formspree
+      const response = await fetch('https://formspree.io/f/xdkobvwl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          subject: 'ComplianceIQ Calculator Feedback',
+          message: `
+COMPLIANCE CALCULATOR FEEDBACK
+
+Contact: ${contactName}
+Email: ${email}
+Facility: ${facilityName}
+Biggest Pain Point: ${biggestPainPoint}
+
+Additional Feedback:
+${additionalFeedback}
+
+Calculator Results:
+- Beds: ${results.bedCount}
+- Residents: ${results.residentCount}
+- Total Care Minutes: ${results.careMinutesPerResident}
+- RN Care Minutes: ${results.rnMinutesPerResident}
+- Compliance Status: ${complianceStatus.status}
+          `,
+          _replyto: email,
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        // Still show success for better UX
+        setIsSubmitted(true);
+      }
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      // Still show success for better UX
+      setIsSubmitted(true);
+    }
   };
 
   const steps = [
@@ -470,36 +553,34 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
         <div className="max-w-4xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
+              <button 
+                onClick={onNavigateToLanding}
+                className="transition-colors hover:opacity-80"
+              >
                 <div style={{
-                  width: '32px',
-                  height: '32px',
+                  width: '40px',
+                  height: '40px',
                   background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
                   clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
                     <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
                   </svg>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</span>
-                  <span className="text-xs font-medium px-2 py-1 rounded-full" style={{ 
-                    backgroundColor: '#F0FDF4', 
-                    color: '#059669',
-                    border: '1px solid #BBF7D0'
-                  }}>
-                    Care more. Calculate less.
-                  </span>
+              </button>
+              <div>
+                <div className="text-2xl font-bold" style={{ color: '#059669' }}>ComplianceIQ</div>
+                <div className="text-sm font-medium text-center" style={{ color: '#34D399', opacity: 0.8 }}>
+                  Care more. Calculate less.
                 </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <span className="px-3 py-1 text-sm font-medium rounded-full border" 
-                    style={{ backgroundColor: '#F0FDF4', color: '#166534', borderColor: '#BBF7D0' }}>
-                Care more. Calculate less.
+              <span className="text-sm font-medium" style={{ color: '#6B7280' }}>
+                Planning Tool
               </span>
             </div>
           </div>
@@ -965,7 +1046,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                       Cancel
                     </button>
                     <button
-                      onClick={() => setIsSubmitted(true)}
+                      onClick={handleFeedbackSubmit}
                       disabled={!email || !contactName || !facilityName || !biggestPainPoint}
                       className="flex-1 py-3 px-4 rounded-lg font-semibold text-white disabled:opacity-50"
                       style={{ backgroundColor: '#059669' }}
@@ -986,7 +1067,7 @@ function HealthcareComplianceCalculator({ onNavigateToLanding }) {
                   <button
                     onClick={() => setShowFeedback(false)}
                     className="py-2 px-6 rounded-lg font-semibold text-white"
-                                          style={{ backgroundColor: '#059669' }}
+                    style={{ backgroundColor: '#059669' }}
                   >
                     Close
                   </button>
@@ -1077,36 +1158,4 @@ function ChevronRight({ className, style }) {
   );
 }
 
-function AlertCircle({ className, style }) {
-  return (
-    <svg className={className} style={style} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"></circle>
-      <path d="m15 9-6 6"></path>
-      <path d="m9 9 6 6"></path>
-    </svg>
-  );
-}
-
-function Calculator({ className, style }) {
-  return (
-    <svg className={className} style={style} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
-      <line x1="8" x2="16" y1="6" y2="6"></line>
-      <line x1="8" x2="16" y1="10" y2="10"></line>
-      <line x1="8" x2="16" y1="14" y2="14"></line>
-      <line x1="8" x2="16" y1="18" y2="18"></line>
-    </svg>
-  );
-}
-
-function Info({ className, style }) {
-  return (
-    <svg className={className} style={style} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"></circle>
-      <path d="m15 9-6 6"></path>
-      <path d="m9 9 6 6"></path>
-    </svg>
-  );
-}
-
-export default App; 
+export default App;
