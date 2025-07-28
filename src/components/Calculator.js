@@ -180,7 +180,7 @@ Browser: ${navigator.userAgent.split(')')[0]})
       if (response.ok) {
         setIsSubmitted(true);
       } else {
-        console.error('Getform submission failed');
+        console.error('Web3Forms submission failed');
         setIsSubmitted(true); // Still show success for better UX
       }
     } catch (error) {
@@ -275,6 +275,24 @@ Browser: ${navigator.userAgent.split(')')[0]})
           {showResults ? (
             /* Results Display */
             <div className="p-8">
+              {/* Input Summary - Brief Overview */}
+              <div className="mb-6 p-4 rounded-lg border" style={{ backgroundColor: '#F8FAFC', borderColor: '#E2E8F0' }}>
+                <div className="flex items-center justify-center gap-8 text-sm">
+                  <div className="text-center">
+                    <p className="text-xs font-medium" style={{ color: '#6B7280' }}>Facility</p>
+                    <p className="font-semibold" style={{ color: '#1F2937' }}>{results.bedCount} beds • {results.residentCount} residents</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xs font-medium" style={{ color: '#6B7280' }}>Weekly Hours</p>
+                    <p className="font-semibold" style={{ color: '#1F2937' }}>RN: {rnHours || '0'} • EN: {enHours || '0'} • PCW: {pcwHours || '0'}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xs font-medium" style={{ color: '#6B7280' }}>Total</p>
+                    <p className="font-semibold" style={{ color: '#1F2937' }}>{results.totalWeeklyHours} hours/week</p>
+                  </div>
+                </div>
+              </div>
+
               {/* Primary Status */}
               <div className="text-center mb-8 p-6 rounded-xl border-2" style={{
                 backgroundColor: complianceStatus.bgColor,
@@ -289,32 +307,6 @@ Browser: ${navigator.userAgent.split(')')[0]})
                 <p className="text-lg" style={{ color: complianceStatus.textColor }}>
                   Care minutes compliance assessment complete
                 </p>
-              </div>
-
-              {/* Input Reference Section */}
-              <div className="mb-8 p-6 rounded-lg border" style={{ backgroundColor: '#F8FAFC', borderColor: '#E2E8F0' }}>
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2" style={{ color: '#1F2937' }}>
-                  <FileText className="w-5 h-5" style={{ color: '#6B7280' }} />
-                  Your Input Summary
-                </h3>
-                <div className="grid md:grid-cols-3 gap-4 text-sm">
-                  <div className="bg-white p-4 rounded-lg border" style={{ borderColor: '#E5E7EB' }}>
-                    <p className="font-medium mb-1" style={{ color: '#374151' }}>Facility Size</p>
-                    <p style={{ color: '#6B7280' }}>Operational Beds: <span className="font-semibold text-gray-900">{results.bedCount}</span></p>
-                    <p style={{ color: '#6B7280' }}>Average Residents: <span className="font-semibold text-gray-900">{results.residentCount}</span></p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg border" style={{ borderColor: '#E5E7EB' }}>
-                    <p className="font-medium mb-1" style={{ color: '#374151' }}>Weekly Staff Hours</p>
-                    <p style={{ color: '#6B7280' }}>RN Hours: <span className="font-semibold text-gray-900">{rnHours || '0'}</span></p>
-                    <p style={{ color: '#6B7280' }}>EN Hours: <span className="font-semibold text-gray-900">{enHours || '0'}</span></p>
-                    <p style={{ color: '#6B7280' }}>PCW Hours: <span className="font-semibold text-gray-900">{pcwHours || '0'}</span></p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg border" style={{ borderColor: '#E5E7EB' }}>
-                    <p className="font-medium mb-1" style={{ color: '#374151' }}>Total Weekly Hours</p>
-                    <p style={{ color: '#6B7280' }}>Direct Care: <span className="font-semibold text-gray-900">{results.totalWeeklyHours}</span></p>
-                    <p style={{ color: '#6B7280' }}>Per Resident: <span className="font-semibold text-gray-900">{Math.round((results.totalWeeklyHours / results.residentCount) * 10) / 10}</span></p>
-                  </div>
-                </div>
               </div>
 
               {/* Key Metrics Grid */}
